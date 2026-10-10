@@ -11,7 +11,7 @@ report() {
   python3 - "$NAME" "$RES" "$URL" "$KEY" <<'PY'
 import sys, json, urllib.request
 name, res, url, key = sys.argv[1:5]
-body = json.dumps({"p_app": "ci", "p_source": "ci", "p_kind": "test", "p_version": name, "p_device": "emulator", "p_info": res}).encode()
+body = json.dumps({"p_app": name, "p_source": "ci", "p_kind": "test", "p_version": name, "p_device": "emulator", "p_info": res}).encode()
 r = urllib.request.Request(url + "/rest/v1/rpc/log_crash", body, {"Content-Type": "application/json", "apikey": key, "Authorization": "Bearer " + key})
 try: print(urllib.request.urlopen(r, timeout=20).status)
 except Exception as e: print("raport nieudany:", e)
@@ -47,3 +47,4 @@ note "wyjątki FATAL w logu: $FATAL"
 adb logcat -d -s AndroidRuntime:E | grep -A8 "FATAL EXCEPTION" | head -20 | tr '\n' ' ' | cut -c1-400 > /tmp/fatal.txt
 [ "$FATAL" != "0" ] && note "$(cat /tmp/fatal.txt)"
 report
+adb shell am force-stop "$PKG"   # następna aplikacja testowana osobno
