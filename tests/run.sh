@@ -23,7 +23,12 @@ if adb install -r -g "$APK" >/tmp/inst.txt 2>&1; then note "instalacja=OK"; else
 adb shell am start -n "$PKG/.MainActivity" >/dev/null 2>&1
 sleep 30
 P1=$(adb shell pidof "$PKG" | tr -d '\r')
-if [ -n "$P1" ]; then note "start=OK(pid $P1)"; else note "start=BŁĄD(aplikacja nie działa)"; fi
+if [ -n "$P1" ]; then note "start=OK(pid $P1)"; else
+  note "start=BŁĄD(aplikacja nie działa)"
+  note "LOG: $(adb logcat -d -t 400 | grep -iE "$PKG|AndroidRuntime|ActivityManager: (Start|Kill|Process)|ActivityTaskManager: START" | tail -12 | tr '\n' ' ' | cut -c1-1500)"
+  adb shell am start -W -n "$PKG/.MainActivity" 2>&1 | tr '\n' ' ' | cut -c1-300 > /tmp/st.txt; note "ponowny start: $(cat /tmp/st.txt)"
+  sleep 25; P1=$(adb shell pidof "$PKG" | tr -d '\r'); note "po ponownym starcie pid='$P1'"
+fi
 adb exec-out screencap -p > "shot-$NAME-1.png" 2>/dev/null
 
 # 1) zabicie procesu, który wyświetla stronę
