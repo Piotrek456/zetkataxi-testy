@@ -1,0 +1,49 @@
+# Test aplikacji Zetka Taxi (kierowca, klient, flota) w emulatorze Androida.
+# Pobiera gotowe pliki APK z https://zielona-taxi.netlify.app/pobierz/ — to repozytorium zawiera tylko skrypt testowy.
+# Wynik: tabela crash_log (rodzaj "test") + zrzuty ekranu w Actions → Artifacts.
+name: Test APK w emulatorze
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * 1'   # w poniedziałki rano
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pobierz APK
+        run: |
+          for a in kierowca klient flota; do curl -fsSL -o zt-$a.apk "https://zielona-taxi.netlify.app/pobierz/zt-$a.apk"; done
+          ls -la *.apk
+
+      - name: Włącz KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+          ls -l /dev/kvm
+
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          emulator-boot-timeout: 900
+          disable-animations: true
+          script: |
+            bash tests/run.sh zt-kierowca.apk pl.zetkataxi.kierowca kierowca
+            bash tests/run.sh zt-klient.apk pl.zetkataxi.klient klient
+            bash tests/run.sh zt-flota.apk pl.zetkataxi.flota flota
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zrzuty-ekranu
+          path: shot-*.png
+          if-no-files-found: ignore
