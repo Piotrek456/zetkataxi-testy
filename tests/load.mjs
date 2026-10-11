@@ -57,8 +57,9 @@ async function driver(i) {
   const ch = [
     sb.channel('me').on('postgres_changes', { event: '*', schema: 'public', table: 'drivers', filter: `id=eq.${id}` }, () => rtMsg('kierowca: ja')).subscribe((s, e) => chanStatus('kierowca/me', s, e)),
     sb.channel('rides').on('postgres_changes', { event: '*', schema: 'public', table: 'rides' }, ({ new: r }) => { rtMsg('kierowca: kursy'); onRide(r); }).subscribe((s, e) => chanStatus('kierowca/rides', s, e)),
-    sb.channel('positions').on('postgres_changes', { event: '*', schema: 'public', table: 'positions' }, () => rtMsg('kierowca: pozycje')).subscribe((s, e) => chanStatus('kierowca/positions', s, e)),
   ];
+  // wersja -v107: inne auta tylko odpytywane co 10 s (bez kursu), bez kanału na żywo
+  timers.push(setInterval(() => { if (!busy) timed('kierowca: inne auta', () => sb.from('positions').select('*').eq('online', true)); }, 10e3));
   await timed('driver_set_online', () => sb.rpc('driver_set_online', { p_online: true }));
   const sendPos = () => { lastSent = now(); return timed('driver_location', () => sb.rpc('driver_location', { p_lat: pos.lat, p_lng: pos.lng })); };
   await sendPos();
@@ -125,19 +126,28 @@ async function client(i) {
   let ride = null, ordered = 0;
   const ch = [
     sb.channel('my-rides').on('postgres_changes', { event: '*', schema: 'public', table: 'rides', filter: `client_id=eq.${id}` }, ({ new: r }) => { rtMsg('klient: moje kursy'); onMine(r); }).subscribe((s, e) => chanStatus('klient/my-rides', s, e)),
-    sb.channel('positions').on('postgres_changes', { event: '*', schema: 'public', table: 'positions' }, () => rtMsg('klient: pozycje aut')).subscribe((s, e) => chanStatus('klient/positions', s, e)),
     sb.channel('settings').on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'settings' }, () => rtMsg('klient: ustawienia')).subscribe((s, e) => chanStatus('klient/settings', s, e)),
     sb.channel('zt-cars', { config: { broadcast: { self: false } } }).on('broadcast', { event: '*' }, () => rtMsg('klient: auta offline')).subscribe((s, e) => chanStatus('klient/zt-cars', s, e)),
   ];
   await timed('klient: pozycje aut', () => sb.from('positions').select('*').eq('online', true));
-  timers.push(setInterval(() => timed('klient: odświeżenie', () => sb.from('rides').select('*').eq('client_id', id).order('created_at', { ascending: false }).limit(1)), 10e3));
-  timers.push(setInterval(() => timed('klient: pozycje aut', () => sb.from('positions').select('*').eq('online', true)), 30e3));
+  // wersja -v107: co 10 s kurs + pozycje aut (jedno odświeżenie), auto mojego kierowcy na żywo w trakcie kursu
+  timers.push(setInterval(async () => {
+    const r = await timed('klient: odświeżenie', () => sb.from('rides').select('*').eq('client_id', id).order('created_at', { ascending: false }).limit(1));
+    if (r && r.data && r.data[0]) onMine(r.data[0]);
+    await timed('klient: pozycje aut', () => sb.from('positions').select('*').eq('online', true));
+  }, 10e3));
+  let drvCh = null;
   timers.push(setInterval(() => { const p = spot(4); timed('client_ping', () => sb.rpc('client_ping', { p_lat: p.lat, p_lng: p.lng })); }, 60e3));
 
   function onMine(r) {
     if (!r || !ride || r.id !== ride.id) return;
     const s = M.rides[r.id]; if (!s) return;
     if (r.status === 'taken' && !s.taken) { s.taken = now(); s.offeredFirst = !!r.offered_to; }
+    if (['taken', 'arrived', 'ride'].includes(r.status) && r.driver_id && !drvCh) {
+      drvCh = sb.channel('my-driver-' + r.driver_id).on('postgres_changes', { event: '*', schema: 'public', table: 'positions', filter: `driver_id=eq.${r.driver_id}` }, () => rtMsg('klient: mój kierowca')).subscribe((st, e) => chanStatus('klient/my-driver', st, e));
+      ch.push(drvCh);
+    }
+    if (['done', 'cancelled'].includes(r.status) && drvCh) { sb.removeChannel(drvCh); drvCh = null; }
     if (r.status === 'arrived' && !s.arrived) s.arrived = now();
     if (r.status === 'done' && !s.done) s.done = now();
     if (r.status === 'cancelled') s.cancelled = now();
