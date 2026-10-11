@@ -9,6 +9,9 @@ on:
       clients: { description: 'Liczba klientów', default: '80' }
       order_min: { description: 'Okno zamówień (min)', default: '4' }
       total_min: { description: 'Czas testu (min)', default: '12' }
+      client_wait_min: { description: 'Cierpliwość klienta (min)', default: '4' }
+      wait_share: { description: 'Część kursów z płatnym oczekiwaniem (0–1)', default: '0' }
+      note: { description: 'Uwaga przy kursach testowych', default: 'TEST OBCIĄŻENIA' }
 
 permissions:
   contents: read
@@ -16,7 +19,7 @@ permissions:
 jobs:
   load:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 55
     strategy:
       fail-fast: false
       matrix:
@@ -34,6 +37,9 @@ jobs:
           CLIENTS: ${{ inputs.clients }}
           ORDER_MIN: ${{ inputs.order_min }}
           TOTAL_MIN: ${{ inputs.total_min }}
+          CLIENT_WAIT_MIN: ${{ inputs.client_wait_min }}
+          WAIT_SHARE: ${{ inputs.wait_share }}
+          NOTE: ${{ inputs.note }}
           SHARD: ${{ matrix.shard }}
           SHARDS: 6
         run: |

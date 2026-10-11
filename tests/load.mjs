@@ -13,6 +13,9 @@ const SHARD = +process.env.SHARD || 0, SHARDS = +process.env.SHARDS || 1;   // c
 const mineIdx = i => (i % SHARDS) === SHARD;
 const ORDER_WINDOW = (+process.env.ORDER_MIN || 4) * 60e3;   // w tym czasie klienci składają zamówienia
 const TOTAL = (+process.env.TOTAL_MIN || 12) * 60e3;         // cały test
+const PATIENCE = (+process.env.CLIENT_WAIT_MIN || 4) * 60e3;  // po tylu minutach bez kierowcy klient anuluje
+const WAIT_SHARE = +process.env.WAIT_SHARE || 0;              // część kursów, w których klient spóźnia się ~4 min (płatne oczekiwanie)
+const NOTE = process.env.NOTE || 'TEST OBCIĄŻENIA';
 if (!URL || !KEY || !PASS) { console.error('Brak SB_URL / SB_KEY / LOAD_PASS'); process.exit(1); }
 
 const T0 = Date.now(), now = () => Date.now(), sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -104,7 +107,7 @@ async function driver(i) {
     target = { lat: r.from_lat, lng: r.from_lng };
     await sleep(Math.min(90e3, 5e3 * Math.ceil(kmBetween(pos, target) / 0.055)) + rnd(0, 5e3));
     await timed('driver_ride_step', () => sb.rpc('driver_ride_step', { p_ride: r.id, p_step: 'arrived' }));
-    await sleep(rnd(5e3, 15e3));
+    await sleep(Math.random() < WAIT_SHARE ? rnd(245e3, 290e3) : rnd(5e3, 15e3));   // płatne oczekiwanie po 3 bezpłatnych minutach
     await timed('driver_ride_step', () => sb.rpc('driver_ride_step', { p_ride: r.id, p_step: 'ride' }));
     target = { lat: r.to_lat, lng: r.to_lng };
     await sleep(Math.min(90e3, 5e3 * Math.ceil(kmBetween(pos, target) / 0.055)));
@@ -160,14 +163,14 @@ async function client(i) {
   const from = spot(4), to = spot(6);
   const res = await timed('create_ride', () => sb.rpc('create_ride', { p: {
     from_addr: `Test start ${i}`, to_addr: `Test cel ${i}`, from_lat: from.lat, from_lng: from.lng, to_lat: to.lat, to_lng: to.lng,
-    km: Math.round(kmBetween(from, to) * 1.3 * 100) / 100, minutes: Math.round(kmBetween(from, to) * 2.2), pay: ['Gotówka', 'Karta u kierowcy', 'BLIK u kierowcy'][i % 3], pax: '1', note: 'TEST OBCIĄŻENIA' } }));
+    km: Math.round(kmBetween(from, to) * 1.3 * 100) / 100, minutes: Math.round(kmBetween(from, to) * 2.2), pay: ['Gotówka', 'Karta u kierowcy', 'BLIK u kierowcy'][i % 3], pax: '1', note: NOTE } }));
   if (res && res.data && res.data.id) { ride = res.data; ordered = now(); M.rides[ride.id] = { at: ordered, client: i, offered: !!ride.offered_to }; }
   // klient czeka max 4 min na kierowcę, potem anuluje (jak zniecierpliwiony człowiek)
   while (ride && now() - T0 < TOTAL - 25e3) {
     await sleep(5e3);
     const s = M.rides[ride.id];
     if (s.taken || s.cancelled) break;
-    if (now() - ordered > 240e3) { await timed('cancel_ride', () => sb.rpc('cancel_ride', { p_ride: ride.id })); s.gaveUp = now(); break; }
+    if (now() - ordered > PATIENCE) { await timed('cancel_ride', () => sb.rpc('cancel_ride', { p_ride: ride.id })); s.gaveUp = now(); break; }
   }
   await sleep(Math.max(0, TOTAL - (now() - T0) - 15e3));
   timers.forEach(clearInterval);
