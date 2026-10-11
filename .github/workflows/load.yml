@@ -1,0 +1,35 @@
+# Test obciążenia: wielu kierowców i klientów naraz na serwerze Zetka Taxi (tylko ręcznie).
+# Konta testowe (48999…) zakłada i usuwa Claude w bazie; hasło w sekrecie LOAD_PASS.
+name: Test obciążenia
+
+on:
+  workflow_dispatch:
+    inputs:
+      drivers: { description: 'Liczba kierowców', default: '40' }
+      clients: { description: 'Liczba klientów', default: '80' }
+      order_min: { description: 'Okno zamówień (min)', default: '4' }
+      total_min: { description: 'Czas testu (min)', default: '12' }
+
+permissions:
+  contents: read
+
+jobs:
+  load:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm install --no-save @supabase/supabase-js@2.45.4
+      - name: Test
+        env:
+          SB_URL: https://bmulsxfdpkaqogyfgygo.supabase.co
+          LOAD_PASS: ${{ secrets.LOAD_PASS }}
+          DRIVERS: ${{ inputs.drivers }}
+          CLIENTS: ${{ inputs.clients }}
+          ORDER_MIN: ${{ inputs.order_min }}
+          TOTAL_MIN: ${{ inputs.total_min }}
+        run: |
+          export SB_KEY=$(curl -fsS https://zielona-taxi.netlify.app/shared/config.js | grep -o "SUPABASE_ANON_KEY: '[^']*" | sed "s/.*'//")
+          node tests/load.mjs
