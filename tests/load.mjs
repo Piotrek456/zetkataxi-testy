@@ -29,7 +29,7 @@ async function timed(name, fn) {
   catch (e) { (M.calls[name] ||= []).push(now() - t); errKey(name, e); return { error: e }; }
 }
 const pct = (arr, p) => { if (!arr.length) return 0; const s = [...arr].sort((a, b) => a - b); return s[Math.min(s.length - 1, Math.floor(p * s.length))]; };
-function chanStatus(who, s, err) { M.rt.statuses[s] = (M.rt.statuses[s] || 0) + 1; if (s !== 'SUBSCRIBED') errKey('kanał ' + who, err || s); }
+function chanStatus(who, s, err) { M.rt.statuses[s] = (M.rt.statuses[s] || 0) + 1; if (s !== 'SUBSCRIBED' && s !== 'CLOSED') errKey('kanał ' + who, err || s); }
 const rtMsg = kind => { M.rt.msgs++; M.rt.byKind[kind] = (M.rt.byKind[kind] || 0) + 1; };
 
 function mkClient() {
