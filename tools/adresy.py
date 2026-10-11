@@ -5,7 +5,7 @@ import shapefile
 from pyproj import Transformer
 
 src = sys.argv[1]
-shp = [p for p in glob.glob(os.path.join(src, '**', '*.shp'), recursive=True)]
+shp = [p for p in glob.glob(os.path.join(src, '**', '*.shp'), recursive=True) if 'PunktyAdresowe' in os.path.basename(p)]
 info = [f'pliki SHP: {shp}']
 POW = {'zielona góra', 'zielonogórski', 'powiat zielona góra', 'powiat zielonogórski'}
 out_towns, out_streets, out_codes, rows = {}, {}, {}, []
@@ -22,7 +22,7 @@ for path in shp:
             for i, n in enumerate(low):
                 if k in n: return i
         return None
-    c_pow, c_gm, c_tw, c_st, c_nr, c_kod, c_teryt = col('powiat', 'pow'), col('gmina'), col('miejscowo', 'msc'), col('ulica', 'ul_'), col('numer', 'nr'), col('kod', 'pna'), col('teryt', 'terc')
+    c_pow, c_gm, c_tw, c_st, c_nr, c_kod, c_teryt = col('powiat', 'pow'), col('gmina'), col('miejscowo', 'msc'), col('ulica', 'ulc', 'ul_'), col('numer', 'nr'), col('kod', 'pna'), col('teryt', 'terc')
     info.append(f'kolumny: powiat={c_pow} gmina={c_gm} miejscowosc={c_tw} ulica={c_st} numer={c_nr} kod={c_kod} teryt={c_teryt}')
     sample_shown = 0
     tr = None
