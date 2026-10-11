@@ -56,17 +56,19 @@ async function driver(i) {
   const timers = [];
   const ch = [
     sb.channel('me').on('postgres_changes', { event: '*', schema: 'public', table: 'drivers', filter: `id=eq.${id}` }, () => rtMsg('kierowca: ja')).subscribe((s, e) => chanStatus('kierowca/me', s, e)),
-    sb.channel('rides').on('postgres_changes', { event: '*', schema: 'public', table: 'rides' }, ({ new: r }) => { rtMsg('kierowca: kursy'); onRide(r); }).subscribe((s, e) => chanStatus('kierowca/rides', s, e)),
+    // wersja -v108: na żywo tylko zlecenia na giełdzie i moje kursy
+    sb.channel('rides-open').on('postgres_changes', { event: '*', schema: 'public', table: 'rides', filter: 'status=eq.open' }, ({ new: r }) => { rtMsg('kierowca: giełda na żywo'); onRide(r); }).subscribe((s, e) => chanStatus('kierowca/rides-open', s, e)),
   ];
-  // wersja -v107: inne auta tylko odpytywane co 10 s (bez kursu), bez kanału na żywo
-  timers.push(setInterval(() => { if (!busy) timed('kierowca: inne auta', () => sb.from('positions').select('*').eq('online', true)); }, 10e3));
+  ch.push(sb.channel('rides-mine').on('postgres_changes', { event: '*', schema: 'public', table: 'rides', filter: `driver_id=eq.${id}` }, () => rtMsg('kierowca: moje kursy')).subscribe((s, e) => chanStatus('kierowca/rides-mine', s, e)));
+  // wersja -v108: inne auta odpytywane co 20 s (bez kursu)
+  timers.push(setInterval(() => { if (!busy) timed('kierowca: inne auta', () => sb.from('positions').select('*').eq('online', true)); }, 20e3));
   await timed('driver_set_online', () => sb.rpc('driver_set_online', { p_online: true }));
   const sendPos = () => { lastSent = now(); return timed('driver_location', () => sb.rpc('driver_location', { p_lat: pos.lat, p_lng: pos.lng })); };
   await sendPos();
   timers.push(setInterval(() => timed('driver_heartbeat', () => sb.rpc('driver_heartbeat')), 60e3));
   // ruch: w kursie 1 krok/5 s (~40 km/h), na postoju pozycja co 30 s
   timers.push(setInterval(() => {
-    if (target) { const d = kmBetween(pos, target), step = 0.055; if (d <= step) pos = { ...target }; else { pos = { lat: pos.lat + (target.lat - pos.lat) * step / d, lng: pos.lng + (target.lng - pos.lng) * step / d }; } sendPos(); }
+    if (target) { const d = kmBetween(pos, target), step = 0.055; if (d <= step) pos = { ...target }; else { pos = { lat: pos.lat + (target.lat - pos.lat) * step / d, lng: pos.lng + (target.lng - pos.lng) * step / d }; } if (now() - lastSent >= 9.5e3) sendPos(); }
     else if (now() - lastSent > 30e3) sendPos();
   }, 5e3));
   // odświeżanie jak w aplikacji: co 10 s aktywny kurs + giełda
@@ -134,8 +136,9 @@ async function client(i) {
   timers.push(setInterval(async () => {
     const r = await timed('klient: odświeżenie', () => sb.from('rides').select('*').eq('client_id', id).order('created_at', { ascending: false }).limit(1));
     if (r && r.data && r.data[0]) onMine(r.data[0]);
-    await timed('klient: pozycje aut', () => sb.from('positions').select('*').eq('online', true));
+    if ((tick = (tick || 0) + 1) % 2 === 0) await timed('klient: pozycje aut', () => sb.from('positions').select('*').eq('online', true));
   }, 10e3));
+  let tick = 0;
   let drvCh = null;
   timers.push(setInterval(() => { const p = spot(4); timed('client_ping', () => sb.rpc('client_ping', { p_lat: p.lat, p_lng: p.lng })); }, 60e3));
 
