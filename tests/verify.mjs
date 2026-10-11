@@ -88,7 +88,10 @@ for (const i of [1, 2]) {
   await step('kierowca' + i, async () => {
     await login(d, '/kierowca/', '999200' + String(i).padStart(3, '0'));
     await d.waitForSelector('[data-tab="earn"]', { timeout: 40000 });
-    await d.click('[data-tab="earn"]'); await d.waitForTimeout(3000);
+    await d.waitForTimeout(3000);
+    out['kierowca' + i + '_okno'] = await d.evaluate(() => [...document.querySelectorAll('.modal')].map(m => m.innerText.replace(/\s+/g, ' ').slice(0, 160)));
+    await d.evaluate(() => document.querySelectorAll('.modal').forEach(m => m.remove()));
+    await d.evaluate(() => document.querySelector('[data-tab="earn"]').click()); await d.waitForTimeout(3000);
     out['kierowca' + i + '_zarobki'] = (await d.innerText('#view')).replace(/\s+/g, ' ').slice(0, 700);
   });
   await d.close();
