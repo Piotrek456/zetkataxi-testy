@@ -1,0 +1,24 @@
+pliki SHP: ['prg/PRG_PunktyAdresowe_POLSKA.shp', 'prg/PRG_Ulice_POLSKA.shp', 'prg/PRG_Place_POLSKA.shp', 'prg/PRG_Miejscowosci_POLSKA.shp']
+PRG_PunktyAdresowe_POLSKA.shp: pola ['ID_IIP', 'NUMER_PORZ', 'KOD_POCZT', 'DATA_NAD', 'NAZWA_ULC', 'ID_ULIC', 'NAZWA_GMI', 'TERYT_GMI', 'NAZWA_MSC', 'ID_SIMC'], rekordów 8628811, prj: PROJCS["ETRF2000-PL_CS92",GEOGCS["GCS_ETRF2000-PL",DATUM["ETRF2000_Poland",SPHEROID["GRS_1980",6378137.0,298.257222101]]
+kolumny: powiat=None gmina=None miejscowosc=8 ulica=None numer=1 kod=2 teryt=7
+przykład: ['PL.PZGIK.200_d7329c9b-5d6f-441c-8c97-8506b5073aa0_2016-03-09T10:38:51+01:00', '4', '97-300', '', 'Rodzinna', '18725', 'Piotrków Trybunalski', '1062011', 'Piotrków Trybunalski', '0967430']
+przykład: ['PL.PZGIK.200_1c05cf1e-8fc6-450a-a4ad-f6869105ff87_2016-03-09T10:38:51+01:00', '6', '97-300', '', 'Rodzinna', '18725', 'Piotrków Trybunalski', '1062011', 'Piotrków Trybunalski', '0967430']
+przykład: ['PL.PZGIK.200_f25d84b1-b8d0-4969-ad33-c763079b979d_2016-03-09T10:38:51+01:00', '7', '97-300', '', 'Rodzinna', '18725', 'Piotrków Trybunalski', '1062011', 'Piotrków Trybunalski', '0967430']
+PRG_Ulice_POLSKA.shp: pola ['ID_IIP', 'NAZWA_ULC', 'RODZAJ', 'NAZWA_TER1', 'NAZWA_TER2', 'ID_ULIC', 'NAZWA_GMI', 'TERYT_GMI', 'NAZWA_MSC', 'ID_SIMC'], rekordów 296976, prj: PROJCS["ETRS_1989_Poland_CS92",GEOGCS["GCS_ETRS_1989",DATUM["D_ETRS_1989",SPHEROID["GRS_1980",6378137.0,298.257222101]],
+kolumny: powiat=None gmina=None miejscowosc=8 ulica=None numer=None kod=None teryt=7
+przykład: ['PL.PZGIK.200_df13edf5-db30-4631-b5cd-8fa60a5f460f_2016-11-24T16:09:22+02:00', 'Turystyczna', '1', 'Turystyczna', '', '23184', 'Piotrków Trybunalski', '1062011', 'Piotrków Trybunalski', '0967430']
+przykład: ['PL.PZGIK.200_6d7a5556-d498-4a82-8b03-5c70a664ae5e_2016-11-24T16:04:08+02:00', 'Malinowa', '1', 'Malinowa', '', '12065', 'Piotrków Trybunalski', '1062011', 'Piotrków Trybunalski', '0967430']
+przykład: ['PL.PZGIK.200_c8ca34ed-c011-477a-b104-96c90eee2080_2016-11-24T16:06:30+02:00', 'Jesionowa', '1', 'Jesionowa', '', '07506', 'Piotrków Trybunalski', '1062011', 'Piotrków Trybunalski', '0967430']
+PRG_Place_POLSKA.shp: pola ['ID_IIP', 'NAZWA_ULC', 'RODZAJ', 'NAZWA_TER1', 'NAZWA_TER2', 'ID_ULIC', 'NAZWA_GMI', 'TERYT_GMI', 'NAZWA_MSC', 'ID_SIMC'], rekordów 8552, prj: PROJCS["ETRS_1989_Poland_CS92",GEOGCS["GCS_ETRS_1989",DATUM["D_ETRS_1989",SPHEROID["GRS_1980",6378137.0,298.257222101]],
+kolumny: powiat=None gmina=None miejscowosc=8 ulica=None numer=None kod=None teryt=7
+przykład: ['PL.PZGIK.200_6fc80af1-8aca-405d-923b-245492ead01e_2021-10-21T20:40:02+02:00', 'Olimpijczyka Władysława Komara', '6', 'Olimpijczyka Władysława Komara', '', '45425', 'Szamotuły', '3024073', 'Lipnica', '0595849']
+przykład: ['PL.PZGIK.200_bf3075ed-17bc-417b-9e21-488f32ebb66b_2017-03-27T12:53:55+02:00', 'Rondo im. ks. Stanisława Brzóski', '6', 'Rondo im. ks. Stanisława Brzóski', '', '45626', 'Kałuszyn', '1412093', 'Ryczołek', '0673957']
+przykład: ['PL.PZGIK.200_5c81a0a9-147d-40bc-94bc-f7181895f4e5_2017-03-30T13:36:22+02:00', 'Plac Wolności', '3', 'Plac Wolności', '', '24685', 'Słupca', '3023011', 'Słupca', '0949247']
+PRG_Miejscowosci_POLSKA.shp: pola ['ID_IIP', 'NAZWA_MSC', 'RODZAJ_MSC', 'ID_SIMC', 'ID_PRNG', 'TERYT_GMI', 'NAZWA_GMI'], rekordów 68331, prj: PROJCS["ETRS_1989_Poland_CS92",GEOGCS["GCS_ETRS_1989",DATUM["D_ETRS_1989",SPHEROID["GRS_1980",6378137.0,298.257222101]],
+kolumny: powiat=None gmina=None miejscowosc=1 ulica=None numer=None kod=None teryt=5
+przykład: ['PL.PZGIK.200_21a1da4a-671d-4050-b60f-33f298c42b06_2021-10-28T14:08:57+02:00', 'Brzóza Stadnicka', '01', '0667678', '', '1810072', 'Żołynia']
+przykład: ['PL.PZGIK.200_eef57395-cb83-4dd0-b99b-ee7a192bc228_2025-02-14T19:03:48+02:00', 'Kętrzyn', '96', '0964710', '', '2808011', 'Kętrzyn']
+przykład: ['PL.PZGIK.200_9e70e6c4-943c-40cd-b197-2596234f1895_2025-02-14T19:06:00+02:00', 'Szestno', '01', '0483518', '', '2810032', 'Mrągowo']
+adresów: 40261, miejscowości: 147, ulic: 1, kodów: 372
+najwięcej: Zielona Góra 21277, Sulechów 1945, Kargowa 940, Nowogród Bobrzański 889, Babimost 826, Płoty 731, Świdnica 684, Brzezie k. Sulechowa 609, Droszków 608, Czerwieńsk 606, Wilkanowo 389, Przytok 388, Nietków 357, Bojadła 344, Krężoły 325
+rozmiar JSON: 1410827 B
