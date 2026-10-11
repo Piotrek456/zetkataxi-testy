@@ -9,6 +9,8 @@ import { createClient } from '@supabase/supabase-js';
 
 const URL = process.env.SB_URL, KEY = process.env.SB_KEY, PASS = process.env.LOAD_PASS;
 const ND = +process.env.DRIVERS || 40, NC = +process.env.CLIENTS || 80;
+const SHARD = +process.env.SHARD || 0, SHARDS = +process.env.SHARDS || 1;   // część użytkowników na tej maszynie (osobny adres IP)
+const mineIdx = i => (i % SHARDS) === SHARD;
 const ORDER_WINDOW = (+process.env.ORDER_MIN || 4) * 60e3;   // w tym czasie klienci składają zamówienia
 const TOTAL = (+process.env.TOTAL_MIN || 12) * 60e3;         // cały test
 if (!URL || !KEY || !PASS) { console.error('Brak SB_URL / SB_KEY / LOAD_PASS'); process.exit(1); }
@@ -21,7 +23,7 @@ const kmBetween = (a, b) => { const R = 6371, dLat = (b.lat - a.lat) * Math.PI /
   const s = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * Math.PI / 180) * Math.cos(b.lat * Math.PI / 180) * Math.sin(dLng / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(s)); };
 
 // ---------------------------------------------------------------- pomiary
-const M = { calls: {}, errors: {}, rt: { msgs: 0, byKind: {}, statuses: {} }, rides: {}, claim: { ok: 0, lost: 0, err: 0 }, offers: { got: 0, accepted: 0, declined: 0 }, login: { ok: 0, err: 0, ms: [] } };
+const M = { who: { d: 0, c: 0 }, calls: {}, errors: {}, rt: { msgs: 0, byKind: {}, statuses: {} }, rides: {}, claim: { ok: 0, lost: 0, err: 0 }, offers: { got: 0, accepted: 0, declined: 0 }, login: { ok: 0, err: 0, ms: [] } };
 const errKey = (name, e) => { const k = name + ': ' + String(e && (e.message || e.code || e)).slice(0, 90); M.errors[k] = (M.errors[k] || 0) + 1; };
 async function timed(name, fn) {
   const t = now();
@@ -49,7 +51,7 @@ async function login(sb, email) {
 async function driver(i) {
   await sleep(rnd(0, 30e3));   // kierowcy włączają aplikację w ciągu 30 s
   const sb = mkClient(), id = await login(sb, `48999200${String(i).padStart(3, '0')}@konto.zielonataxi.pl`);
-  if (!id) return;
+  if (!id) return; M.who.d++;
   let pos = spot(4), target = null, active = null, busy = false, lastSent = 0;
   const timers = [];
   const ch = [
@@ -118,7 +120,7 @@ async function driver(i) {
 async function client(i) {
   await sleep(rnd(0, 40e3));   // klienci otwierają aplikację w ciągu 40 s
   const sb = mkClient(), id = await login(sb, `48999100${String(i).padStart(3, '0')}@klient.zielonataxi.pl`);
-  if (!id) return;
+  if (!id) return; M.who.c++;
   const timers = [];
   let ride = null, ordered = 0;
   const ch = [
@@ -162,13 +164,13 @@ async function client(i) {
 // ---------------------------------------------------------------- start
 console.log(`Start: ${ND} kierowców, ${NC} klientów, zamówienia przez ${ORDER_WINDOW / 60e3} min, test ${TOTAL / 60e3} min`);
 const tick = setInterval(() => console.log(`${Math.round((now() - T0) / 1000)} s · logowania ${M.login.ok}/${ND + NC} · kursy ${Object.keys(M.rides).length} · przyjęte ${M.claim.ok} · wiadomości na żywo ${M.rt.msgs} · błędy ${Object.values(M.errors).reduce((a, b) => a + b, 0)}`), 30e3);
-await Promise.all([...Array.from({ length: ND }, (_, i) => driver(i + 1)), ...Array.from({ length: NC }, (_, i) => client(i + 1))]);
+await Promise.all([...Array.from({ length: ND }, (_, i) => i + 1).filter(mineIdx).map(driver), ...Array.from({ length: NC }, (_, i) => i + 1).filter(mineIdx).map(client)]);
 clearInterval(tick);
 
 // ---------------------------------------------------------------- raport
 const R = Object.values(M.rides), wait = R.filter(r => r.taken).map(r => (r.taken - r.at) / 1000);
 const lines = [];
-lines.push(`OBCIĄŻENIE ${ND} kierowców / ${NC} klientów, ${Math.round((now() - T0) / 60e3)} min`);
+lines.push(`OBCIĄŻENIE część ${SHARD + 1}/${SHARDS} (całość ${ND} kierowców / ${NC} klientów), ${Math.round((now() - T0) / 60e3)} min; zalogowani: kierowcy ${M.who.d}, klienci ${M.who.c}`);
 lines.push(`logowania: ${M.login.ok} ok, ${M.login.err} błędów, p95 ${pct(M.login.ms, .95)} ms`);
 lines.push(`kursy: zamówione ${R.length}/${NC}, przyjęte ${wait.length}, zakończone ${R.filter(r => r.done).length}, klient zrezygnował ${R.filter(r => r.gaveUp).length}`);
 lines.push(`czas do przyjęcia [s]: mediana ${pct(wait, .5).toFixed(0)}, p90 ${pct(wait, .9).toFixed(0)}, max ${Math.max(0, ...wait).toFixed(0)}`);
