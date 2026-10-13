@@ -42,7 +42,42 @@ const step = async (name, fn) => { try { await fn(); out[name + '_ok'] = true; }
 const f = await newPage();
 await step('flota_login', async () => { await login(f, '/flota/', '999300000'); await f.waitForSelector('.mrow', { timeout: 40000 }); out.flota_menu = (await f.innerText('#view')).replace(/\s+/g, ' ').slice(0, 600); });
 const ONLY = process.env.ONLY || '';
-if (ONLY === 'settings') {
+if (ONLY === 'docs') {
+  // dokumenty: walidacja przy dodawaniu (bez zapisu — bez powiadomień), edycja dat istniejącego auta i kierowcy, oznaczenia w tabelach
+  const soon = new Date(Date.now() + 10 * 864e5).toISOString().slice(0, 10), past = new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
+  await step('doc_auto_walidacja', async () => {
+    await f.click('.mrow b:text-is("Samochody")'); await f.click('[data-addopen="car"]');
+    out.doc_auto_pola = await f.$$eval('#addCar input', x => x.map(i => i.id));
+    await f.fill('#ncModel', 'Walidacja'); await f.fill('#ncPlate', 'TST 997');
+    await f.click('#addCar button[type=submit]'); await f.waitForSelector('#ncErr:not([hidden])', { timeout: 5000 }); out.doc_auto_blad1 = await f.innerText('#ncErr');
+    await f.fill('#ncSide', '997'); await f.fill('#ncLic', '1/TX'); await f.fill('#ncExtract', '1'); await f.fill('#nc_reg_until', past); await f.fill('#nc_oc_until', soon);
+    await f.click('#addCar button[type=submit]'); await f.waitForTimeout(800); out.doc_auto_blad2 = await f.innerText('#ncErr');
+    await f.click('[data-addclose]');
+  });
+  await step('doc_auto_edycja', async () => {
+    await f.click('[data-editcar]'); await f.waitForSelector('#editCar', { timeout: 5000 });
+    await f.fill('#ecLic', '12/TX/2024'); await f.fill('#ecExtract', '0001234'); if (!(await f.inputValue('#ecSide'))) await f.fill('#ecSide', '101');
+    await f.fill('#ec_reg_until', '2027-05-01'); await f.fill('#ec_oc_until', soon);
+    await f.click('#editCar button[type=submit]'); await f.waitForFunction(() => !document.querySelector('#editCar'), null, { timeout: 10000 });
+    out.doc_auto_wiersz = (await f.innerText('.tbl tbody tr:first-child')).replace(/\s+/g, ' ');
+  });
+  await step('doc_kier_walidacja', async () => {
+    await f.click('[data-back]'); await f.waitForSelector('.mrow', { timeout: 20000 });
+    await f.click('.mrow b:text-is("Kierowcy")'); await f.click('[data-addopen="driver"]');
+    out.doc_kier_pola = await f.$$eval('#addDriver input[type=date]', x => x.map(i => i.id));
+    await f.fill('#ndName', 'Walidacja Testowa'); await f.fill('#ndPhone', '999200097'); await f.fill('#ndPass', 'Zt-Test#2026x');
+    await f.click('#addDriver button[type=submit]'); await f.waitForSelector('#ndErr:not([hidden])', { timeout: 5000 }); out.doc_kier_blad = await f.innerText('#ndErr');
+    await f.click('[data-addclose]');
+  });
+  await step('doc_kier_edycja', async () => {
+    await f.click('[data-edit]'); await f.waitForSelector('#editForm', { timeout: 5000 });
+    await f.fill('#ed_dl_until', '2034-02-01'); await f.fill('#ed_psych_until', past); await f.fill('#ed_medical_until', soon);
+    await f.click('#editForm button[type=submit]'); await f.waitForFunction(() => !document.querySelector('#editForm'), null, { timeout: 15000 });
+    out.doc_kier_wiersz = (await f.innerText('.tbl tbody tr:first-child')).replace(/\s+/g, ' ');
+    await f.screenshot({ path: 'kierowcy.png', fullPage: true });
+  });
+  await f.close();
+} else if (ONLY === 'settings') {
   // ZT Flota → Ustawienia: formularz, walidacja NIP, zapis, odczyt po odświeżeniu (dane floty testowej)
   await step('ust_wejscie', async () => {
     await f.click('.mrow b:text-is("Ustawienia")'); await f.waitForSelector('#fleetSettings', { timeout: 20000 });
@@ -102,6 +137,7 @@ if (DO_APPROVAL) {
     await f.click('[data-back]'); await f.waitForSelector('.mrow', { timeout: 20000 });
     await f.click('.mrow b:text-is("Samochody")'); await f.click('[data-addopen="car"]');
     await f.fill('#ncModel', 'TEST zatwierdzania'); await f.fill('#ncPlate', 'TST 999');
+    await f.fill('#ncSide', '999'); await f.fill('#ncLic', '99/TX/2026'); await f.fill('#ncExtract', '0009999'); await f.fill('#nc_reg_until', '2027-06-30'); await f.fill('#nc_oc_until', '2027-03-31');
     await f.click('#addCar button[type=submit]'); await f.waitForTimeout(3000);
     out.auto_po_dodaniu = (await f.innerText('#view')).replace(/\s+/g, ' ').slice(0, 500);
   });
@@ -109,6 +145,7 @@ if (DO_APPROVAL) {
     await f.click('[data-back]'); await f.waitForSelector('.mrow', { timeout: 20000 });
     await f.click('.mrow b:text-is("Kierowcy")'); await f.click('[data-addopen="driver"]');
     await f.fill('#ndName', 'Test Zatwierdzania'); await f.fill('#ndPhone', '999200099'); await f.fill('#ndPass', 'Zt-Test#2026x');
+    await f.fill('#nd_dl_until', '2035-01-01'); await f.fill('#nd_psych_until', '2029-01-01'); await f.fill('#nd_medical_until', '2028-01-01');
     await f.click('#addDriver button[type=submit]'); await f.waitForTimeout(5000);
     out.kierowca_po_dodaniu = (await f.innerText('#view')).replace(/\s+/g, ' ').slice(0, 500);
   });
