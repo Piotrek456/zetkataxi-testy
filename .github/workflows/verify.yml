@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       approval: { description: 'Dodaj testowe auto i kierowcę (powiadomienia o zatwierdzaniu)', default: '0' }
+      only: { description: 'Tylko wybrany test (settings)', default: '' }
 
 permissions:
   contents: read
@@ -24,6 +25,7 @@ jobs:
           SB_URL: https://bmulsxfdpkaqogyfgygo.supabase.co
           LOAD_PASS: ${{ secrets.LOAD_PASS }}
           APPROVAL: ${{ inputs.approval }}
+          ONLY: ${{ inputs.only }}
         run: |
           export SB_KEY=$(curl -fsS https://zielona-taxi.netlify.app/shared/config.js | grep -o "SUPABASE_ANON_KEY: '[^']*" | sed "s/.*'//")
           node tests/verify.mjs

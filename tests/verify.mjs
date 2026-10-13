@@ -41,6 +41,38 @@ const step = async (name, fn) => { try { await fn(); out[name + '_ok'] = true; }
 // ---------------------------------------------------------------- ZT Flota
 const f = await newPage();
 await step('flota_login', async () => { await login(f, '/flota/', '999300000'); await f.waitForSelector('.mrow', { timeout: 40000 }); out.flota_menu = (await f.innerText('#view')).replace(/\s+/g, ' ').slice(0, 600); });
+const ONLY = process.env.ONLY || '';
+if (ONLY === 'settings') {
+  // ZT Flota → Ustawienia: formularz, walidacja NIP, zapis, odczyt po odświeżeniu (dane floty testowej)
+  await step('ust_wejscie', async () => {
+    await f.click('.mrow b:text-is("Ustawienia")'); await f.waitForSelector('#fleetSettings', { timeout: 20000 });
+    out.ust_tytul = await f.innerText('#hdTitle');
+    out.ust_pola = await f.$$eval('#fleetSettings input, #fleetSettings select', x => x.map(i => i.id));
+    out.ust_naglowki = await f.$$eval('#fleetSettings h3', x => x.map(h => h.textContent));
+    out.ust_stawki = await f.$$eval('#fs_kasa_tax_rate option', x => x.map(o => o.textContent));
+    out.ust_prowizja_widoczna = /prowizj/i.test(await f.innerText('#view'));
+  });
+  await step('ust_walidacja', async () => {
+    await f.fill('#fs_company_nip', '123'); await f.click('#fleetSettings [type=submit]');
+    await f.waitForSelector('#fsErr:not([hidden])', { timeout: 5000 }); out.ust_blad_nip = await f.innerText('#fsErr');
+  });
+  await step('ust_zapis', async () => {
+    const v = { contact_addr: 'ul. Testowa 1, 65-001 Zielona Góra', contact_email: 'test@zetka.pl', contact_phone: '600 100 200', company_name: 'Test Obciążenia Sp. z o.o.',
+      company_nip: '123-456-32-18', company_regon: '123456785', company_addr: 'ul. Firmowa 2, Zielona Góra', license_no: '99/TX/2026' };
+    for (const [k, x] of Object.entries(v)) await f.fill('#fs_' + k, x);
+    await f.selectOption('#fs_kasa_tax_rate', 'B');
+    await f.click('[data-kasacopy]');
+    out.ust_kopiowanie = await f.inputValue('#fs_kasa_nip');
+    await f.click('#fleetSettings [type=submit]');
+    await f.waitForFunction(() => /zapisane/i.test(document.body.innerText), null, { timeout: 15000 });
+    await f.reload({ waitUntil: 'domcontentloaded' }); await f.waitForSelector('.mrow', { timeout: 40000 });
+    out.ust_menu_po = (await f.innerText('#view')).replace(/\s+/g, ' ').slice(0, 400);
+    await f.click('.mrow b:text-is("Ustawienia")'); await f.waitForSelector('#fleetSettings', { timeout: 20000 });
+    out.ust_po_odczycie = await f.$$eval('#fleetSettings input, #fleetSettings select', x => Object.fromEntries(x.map(i => [i.id, i.value])));
+    await f.screenshot({ path: 'ustawienia.png', fullPage: true });
+  });
+  await f.close();
+} else {
 await step('flota_zarobki', async () => {
   await f.click('.mrow b:text-is("Zarobki")'); await f.waitForSelector('[data-rngp="today"]', { timeout: 30000 });
   await f.click('[data-rngp="today"]'); await f.waitForSelector('.tbl tbody tr', { timeout: 40000 }); await f.waitForTimeout(1500);
@@ -95,6 +127,7 @@ for (const i of [1, 2]) {
     out['kierowca' + i + '_zarobki'] = (await d.innerText('#view')).replace(/\s+/g, ' ').slice(0, 700);
   });
   await d.close();
+}
 }
 await b.close();
 
