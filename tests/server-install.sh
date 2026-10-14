@@ -22,7 +22,8 @@ mkdir -p "$BASE"/{osrm,photon,bin}
 
 log "Pakiety systemowe"
 apt-get update -qq
-apt-get install -y -qq ca-certificates curl openjdk-21-jre-headless docker.io ufw jq >/dev/null
+apt-get install -y -qq ca-certificates curl openjdk-21-jre-headless ufw jq >/dev/null
+command -v docker >/dev/null || apt-get install -y -qq docker.io >/dev/null   # na czystym serwerze; gdy Docker już jest — zostaje
 systemctl enable --now docker >/dev/null
 
 if [ -z "${NO_TLS:-}" ]; then
