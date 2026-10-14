@@ -11,6 +11,7 @@ set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 BASE=/opt/zetka
+JAVA=/usr/lib/jvm/java-21-openjdk-amd64/bin/java   # Photon wymaga Javy 21
 PBF="https://download.geofabrik.de/europe/poland/lubuskie-latest.osm.pbf"
 NOMI_IMG="mediagis/nominatim:4.5"
 NOMI_PW="$(head -c 18 /dev/urandom | base64 | tr -dc A-Za-z0-9)"
@@ -65,7 +66,7 @@ docker run -d --name nominatim --shm-size=1g -e PBF_URL="$PBF" -e NOMINATIM_PASS
 for i in \$(seq 1 180); do curl -fsS http://127.0.0.1:8080/status >/dev/null 2>&1 && break; sleep 20; done
 curl -fsS http://127.0.0.1:8080/status
 NEW=$BASE/photon/data-\$(date +%Y%m%d%H%M); mkdir -p \$NEW
-java -Xmx2g -jar photon.jar -nominatim-import -host 127.0.0.1 -port 5432 -database nominatim -user nominatim -password "$NOMI_PW" -languages pl,en,de -data-dir \$NEW
+$JAVA -Xmx2g -jar photon.jar -nominatim-import -host 127.0.0.1 -port 5432 -database nominatim -user nominatim -password "$NOMI_PW" -languages pl,en,de -data-dir \$NEW
 docker rm -f nominatim >/dev/null; docker volume rm -f nominatim-data >/dev/null
 ln -sfn \$NEW $BASE/photon/current
 systemctl restart zetka-photon
@@ -80,7 +81,7 @@ Description=Zetka Taxi Photon (adresy)
 After=network.target
 [Service]
 WorkingDirectory=$BASE/photon/current
-ExecStart=/usr/bin/java -Xmx2g -jar $BASE/photon/photon.jar -data-dir $BASE/photon/current -listen-ip 127.0.0.1 -listen-port 2322
+ExecStart=$JAVA -Xmx2g -jar $BASE/photon/photon.jar -data-dir $BASE/photon/current -listen-ip 127.0.0.1 -listen-port 2322
 Restart=always
 RestartSec=5
 [Install]
