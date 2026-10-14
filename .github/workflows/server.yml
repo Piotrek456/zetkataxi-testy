@@ -1,0 +1,41 @@
+# Próbna instalacja serwera tras i adresów (lubuskie) na maszynie GitHub — bez HTTPS. Wynik → crash_log (source=serwer).
+name: Proba serwera map
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  server:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalacja (jak na VPS)
+        id: inst
+        continue-on-error: true
+        run: sudo NO_TLS=1 bash tests/server-install.sh 2>&1 | tee install.log
+      - name: Sprawdzenie i raport
+        if: always()
+        run: |
+          set +e
+          R1=$(curl -sS "http://127.0.0.1:5000/route/v1/driving/15.5064,51.9356;15.4830,51.9145?overview=false" | head -c 400)
+          R2=$(curl -sS "http://127.0.0.1:2322/api?q=Bohater%C3%B3w%20Westerplatte%2012%20Zielona%20G%C3%B3ra&limit=2&lang=pl" | head -c 700)
+          R3=$(curl -sS "http://127.0.0.1:2322/api?q=Bohat&limit=3&lat=51.94&lon=15.50&lang=pl" | head -c 700)
+          R4=$(curl -sS "http://127.0.0.1:2322/reverse?lat=51.9356&lon=15.5064&lang=pl" | head -c 500)
+          R5=$(curl -sS "http://127.0.0.1:5000/route/v1/driving/15.5064,51.9356;16.9252,52.4064?overview=false" | head -c 200)
+          FREE=$(free -m | head -2 | tail -1); DISK=$(df -h / | tail -1)
+          TAIL=$(tail -c 2500 install.log)
+          KEY=$(curl -fsS https://zielona-taxi.netlify.app/shared/config.js | grep -o "SUPABASE_ANON_KEY: '[^']*" | sed "s/.*'//")
+          jq -n --arg r1 "$R1" --arg r2 "$R2" --arg r3 "$R3" --arg r4 "$R4" --arg r5 "$R5" --arg free "$FREE" --arg disk "$DISK" --arg tail "$TAIL" --arg ok "${{ steps.inst.outcome }}" \
+            '{ok:$ok,trasa_zg:$r1,adres:$r2,podpowiedz:$r3,reverse:$r4,trasa_poznan:$r5,ram:$free,dysk:$disk,log:$tail}' > out.json
+          python3 - <<'P'
+          import json,os,urllib.request
+          t=open('out.json').read(); key=os.popen("curl -fsS https://zielona-taxi.netlify.app/shared/config.js | grep -o \"SUPABASE_ANON_KEY: '[^']*\" | sed \"s/.*'//\"").read().strip()
+          for k,i in enumerate(range(0,len(t),2900)):
+              body=json.dumps({"p_app":"flota","p_source":"serwer","p_kind":"test","p_version":f"czesc-{k}","p_device":"github","p_info":t[i:i+2900]}).encode()
+              req=urllib.request.Request("https://bmulsxfdpkaqogyfgygo.supabase.co/rest/v1/rpc/log_crash",data=body,headers={"apikey":key,"Authorization":"Bearer "+key,"Content-Type":"application/json"})
+              print(urllib.request.urlopen(req).status)
+          P
