@@ -2,6 +2,10 @@
 import { chromium } from 'playwright';
 import { createClient } from '@supabase/supabase-js';
 const SITE = 'https://zielona-taxi.netlify.app', URL = process.env.SB_URL, KEY = process.env.SB_KEY;
+const rep0 = createClient(URL, KEY, { auth: { persistSession: false } });
+const say = async t => { const { error } = await rep0.rpc('log_crash', { p_app: 'klient', p_source: 'mapy', p_kind: 'test', p_version: 'start', p_device: 'mapy-start', p_info: t }); if (error) console.log('log_crash', error.message); };
+process.on('unhandledRejection', async e => { await say('unhandled ' + String(e && e.message || e).slice(0, 800)); process.exit(1); });
+await say('start key=' + (KEY ? KEY.length : 0));
 const b = await chromium.launch(); const p = await b.newPage();
 const hosts = []; p.on('request', r => { const h = new URL(r.url()).host; if (!/netlify|supabase|jsdelivr|unpkg|openfreemap/.test(h)) hosts.push(h + new URL(r.url()).pathname.slice(0, 20)); });
 const errs = []; p.on('pageerror', e => errs.push(String(e).slice(0, 200)));
