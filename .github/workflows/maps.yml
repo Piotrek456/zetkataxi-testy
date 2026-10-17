@@ -1,0 +1,22 @@
+# Sprawdzenie tras i adresów (nasz serwer map vs publiczne) w prawdziwej przeglądarce. Wynik → crash_log (source=mapy).
+name: Sprawdzenie map
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  maps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm install --no-save @supabase/supabase-js@2.45.4 playwright@1.47.2
+      - run: npx playwright install --with-deps chromium
+      - name: Sprawdzenie
+        env:
+          SB_URL: https://bmulsxfdpkaqogyfgygo.supabase.co
+        run: |
+          export SB_KEY=$(curl -fsS https://zielona-taxi.netlify.app/shared/config.js | grep -o "SUPABASE_ANON_KEY: '[^']*" | sed "s/.*'//")
+          node tests/maps.mjs

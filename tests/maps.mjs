@@ -1,0 +1,24 @@
+// Sprawdzenie tras i adresów: które zapytania idą do naszego serwera map, a które do publicznych (prawdziwa przeglądarka, kod z produkcji).
+import { chromium } from 'playwright';
+import { createClient } from '@supabase/supabase-js';
+const SITE = 'https://zielona-taxi.netlify.app', URL = process.env.SB_URL, KEY = process.env.SB_KEY;
+const b = await chromium.launch(); const p = await b.newPage();
+const hosts = []; p.on('request', r => { const h = new URL(r.url()).host; if (!/netlify|supabase|jsdelivr|unpkg|openfreemap/.test(h)) hosts.push(h + new URL(r.url()).pathname.slice(0, 20)); });
+await p.goto(SITE + '/klient/', { waitUntil: 'domcontentloaded' });
+const out = await p.evaluate(async () => {
+  const c = await import('/shared/core.js'); const res = {};
+  const t = async (k, f) => { const s = performance.now(); try { res[k] = await f(); } catch (e) { res[k] = 'BŁĄD ' + e.message; } res[k + '_ms'] = Math.round(performance.now() - s); };
+  await t('trasa_zg', async () => { const r = await c.routeBetween({ lat: 51.9356, lng: 15.5064 }, { lat: 51.9145, lng: 15.4830 }); return `${r.km.toFixed(2)} km, ${r.min} min${r.approx ? ' (przybliżona)' : ''}`; });
+  await t('trasa_poznan', async () => { const r = await c.routeBetween({ lat: 51.9356, lng: 15.5064 }, { lat: 52.4064, lng: 16.9252 }); return `${r.km.toFixed(1)} km${r.approx ? ' (przybliżona)' : ''}`; });
+  await t('adres_kupiecka', async () => (await c.searchAddr('Kupiecka 63', { lat: 51.94, lng: 15.5 })).slice(0, 3).map(h => h.label));
+  await t('adres_nowa_sol', async () => (await c.searchAddr('Wrocławska Nowa Sól', { lat: 51.94, lng: 15.5 })).slice(0, 3).map(h => h.label));
+  await t('adres_poznan', async () => (await c.searchAddr('Poznań Ławica lotnisko', { lat: 51.94, lng: 15.5 })).slice(0, 3).map(h => h.label));
+  await t('reverse_swiebodzin', async () => await c.reverseAddrOrNull(52.2475, 15.5330));
+  return res;
+});
+out.zapytania = hosts;
+await b.close();
+const text = JSON.stringify(out); console.log(text);
+const rep = createClient(URL, KEY, { auth: { persistSession: false } });
+for (let i = 0, k = 0; i < text.length; i += 2900, k++) await rep.rpc('log_crash', { p_app: 'klient', p_source: 'mapy', p_kind: 'test', p_version: 'czesc-' + k, p_device: 'mapy-test', p_info: text.slice(i, i + 2900) });
+process.exit(0);
