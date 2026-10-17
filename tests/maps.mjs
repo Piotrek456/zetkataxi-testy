@@ -18,7 +18,8 @@ out = await p.evaluate(async () => {
   window.fetch = async (u, o) => { const url = String(u && u.url || u); const h = new URL(url, location.href).host; try { const r = await of(u, o); if (!/netlify|supabase\.co\/rest/.test(h)) log.push(h + ' ' + r.status); return r; } catch (e) { log.push(h + ' BŁĄD ' + e.message); throw e; } };
   const c = await import('/shared/core.js'); const res = {}; res.MAP_SRV = c.MAP_SRV;
   const t = async (k, f) => { const s = performance.now(); try { res[k] = await f(); } catch (e) { res[k] = 'BŁĄD ' + e.message; } res[k + '_ms'] = Math.round(performance.now() - s); };
-  await t('trasa_zg', async () => { const r = await c.routeBetween({ lat: 51.9356, lng: 15.5064 }, { lat: 51.9145, lng: 15.4830 }); return `${r.km.toFixed(2)} km, ${r.min} min${r.approx ? ' (przybliżona)' : ''}`; });
+  await t('trasa_zg', async () => { const r = await c.routeBetween({ lat: 51.9356, lng: 15.5064 }, { lat: 51.9417, lng: 15.5059 }); return `${r.km.toFixed(2)} km, ${r.min} min${r.approx ? ' (przybliżona)' : ''}`; });
+  await t('trasa_glogow', async () => { const r = await c.routeBetween({ lat: 51.9356, lng: 15.5064 }, { lat: 51.6634, lng: 16.0845 }); return `${r.km.toFixed(1)} km`; });
   await t('trasa_poznan', async () => { const r = await c.routeBetween({ lat: 51.9356, lng: 15.5064 }, { lat: 52.4064, lng: 16.9252 }); return `${r.km.toFixed(1)} km${r.approx ? ' (przybliżona)' : ''}`; });
   await t('adres_kupiecka', async () => (await c.searchAddr('Kupiecka 63', { lat: 51.94, lng: 15.5 })).slice(0, 3).map(h => h.label));
   await t('adres_nowa_sol', async () => (await c.searchAddr('Wrocławska Nowa Sól', { lat: 51.94, lng: 15.5 })).slice(0, 3).map(h => h.label));
