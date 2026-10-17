@@ -1,0 +1,27 @@
+# Zrzuty ekranu aplikacji klienta (telefon ~300 ppi) — zapisywane do katalogu shots/ w repozytorium.
+name: Zrzuty ekranu
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  shot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm install --no-save @supabase/supabase-js@2.45.4 playwright@1.47.2
+      - run: npx playwright install --with-deps chromium
+      - name: Zrzuty
+        env:
+          SB_URL: https://bmulsxfdpkaqogyfgygo.supabase.co
+          LOAD_PASS: ${{ secrets.LOAD_PASS }}
+        run: |
+          export SB_KEY=$(curl -fsS https://zielona-taxi.netlify.app/shared/config.js | grep -o "SUPABASE_ANON_KEY: '[^']*" | sed "s/.*'//")
+          node tests/shot-klient.mjs
+      - name: Zapis
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add shots/*.png && git commit -m "Zrzuty ekranu klienta" && git push || true
