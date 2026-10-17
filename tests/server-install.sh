@@ -5,7 +5,8 @@
 #   - kursy i adresy poza lubuskim aplikacja liczy przez publiczne serwery (jak dotąd)
 #   - Caddy: HTTPS (certyfikat Let's Encrypt) pod adresem <ip>.sslip.io albo własną domeną (DOMAIN=...)
 #   - co tydzień (noc z soboty na niedzielę) automatyczna aktualizacja map
-# Uruchomienie na serwerze:  curl -fsSL https://raw.githubusercontent.com/Piotrek456/Zetkataxi/main/server/install.sh | sudo bash
+# Uruchomienie na serwerze (repozytorium aplikacji jest prywatne — publiczna kopia w zetkataxi-testy):
+#   curl -fsSL https://raw.githubusercontent.com/Piotrek456/zetkataxi-testy/main/tests/server-install.sh -o install.sh && sudo nohup bash install.sh > install.log 2>&1 &
 # Bez HTTPS (test):           sudo NO_TLS=1 bash install.sh
 set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
@@ -103,18 +104,28 @@ if [ -z "${NO_TLS:-}" ]; then
   cat > /etc/caddy/Caddyfile <<EOF
 $HOST {
   encode gzip
-  @cors_preflight method OPTIONS
-  header >Access-Control-Allow-Origin "*"
-  header >Access-Control-Allow-Methods "GET, OPTIONS"
-  respond @cors_preflight 204
-  handle /route/* { reverse_proxy 127.0.0.1:5000 }
-  handle /api* { reverse_proxy 127.0.0.1:2322 }
-  handle /reverse* { reverse_proxy 127.0.0.1:2322 }
-  handle /health { respond "ok" 200 }
-  handle { respond 404 }
+  header {
+    Access-Control-Allow-Origin "*"
+    defer
+  }
+  handle /route/* {
+    reverse_proxy 127.0.0.1:5000
+  }
+  handle /api* {
+    reverse_proxy 127.0.0.1:2322
+  }
+  handle /reverse* {
+    reverse_proxy 127.0.0.1:2322
+  }
+  handle /health {
+    respond "ok" 200
+  }
+  handle {
+    respond 404
+  }
 }
 EOF
-  systemctl reload caddy || systemctl restart caddy
+  systemctl restart caddy
 fi
 
 log "Cotygodniowa aktualizacja map (niedziela 3:00)"
