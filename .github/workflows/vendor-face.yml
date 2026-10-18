@@ -1,0 +1,24 @@
+# Pobiera bibliotekę do porównywania twarzy (selfie kierowcy) i modele — do własnego hostingu w aplikacji Zetka Taxi
+name: Biblioteka twarzy (vendor)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          V=1.7.15; B=https://cdn.jsdelivr.net/npm/@vladmandic/face-api@$V
+          mkdir -p vendor/face
+          curl -fsSL -o vendor/face/face-api.esm.js $B/dist/face-api.esm.js
+          for f in tiny_face_detector_model face_landmark_68_model face_recognition_model; do
+            curl -fsSL -o vendor/face/$f.json $B/model/$f.json
+            curl -fsSL -o vendor/face/$f.bin $B/model/$f.bin
+          done
+          curl -fsSL -o vendor/face/LICENSE $B/LICENSE || true
+          sha256sum vendor/face/* > vendor/face/SHA256SUMS; ls -la vendor/face
+      - run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vendor/face && git commit -m "Biblioteka twarzy face-api" && git push || true
