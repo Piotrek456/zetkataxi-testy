@@ -1,0 +1,20 @@
+# Pobiera biblioteki do plików Excel i PDF (do własnego hostingu w aplikacji Zetka Taxi) i zapisuje je w katalogu vendor/
+name: Biblioteki (vendor)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p vendor
+          curl -fsSL -o vendor/xlsx.full.min.js https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js
+          curl -fsSL -o vendor/pdfmake.min.js https://cdn.jsdelivr.net/npm/pdfmake@0.2.10/build/pdfmake.min.js
+          curl -fsSL -o vendor/vfs_fonts.js https://cdn.jsdelivr.net/npm/pdfmake@0.2.10/build/vfs_fonts.js
+          sha256sum vendor/* > vendor/SHA256SUMS; ls -la vendor
+      - run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vendor && git commit -m "Biblioteki Excel/PDF" && git push || true
