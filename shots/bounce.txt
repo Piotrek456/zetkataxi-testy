@@ -1,0 +1,124 @@
+[console warning] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu
+[console warning] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu
+[console warning] [.WebGL-0x254c01f3d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[console warning] [.WebGL-0x254c01f3d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[console warning] [.WebGL-0x254c01f3d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[console warning] [.WebGL-0x254c01f3d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[console warning] Expected value to be of type number, but found null instead.
+[console warning] Expected value to be of type number, but found null instead.
+[console warning] Expected value to be of type number, but found null instead.
+[req 58685] https://57-131-166-229.sslip.io/route/v1/driving/15.5064,51.9356;15.564483,51.938156?overview=full&geometries=geojson&exclude=toll
+===== Suwalska 2B
+20ms mut:sgTo:hidden sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+20ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:class sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+20ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+20ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+29ms vv-resize sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+30ms mut:leaflet-pane leaflet-map-pane:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+30ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+30ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+30ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+30ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+37ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+47ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+100ms t sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+218ms mut:sgTo:hidden sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+218ms mut:view:class sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1994ms mut:leaflet-pane leaflet-map-pane:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1994ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1994ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1994ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1994ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1994ms mut:leaflet-proxy leaflet-zoom-animated:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1994ms t sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2001ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2001ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2002ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2120ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2120ms mut:leaflet-pane leaflet-map-pane:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2120ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-pane leaflet-map-pane leaflet-zo:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-proxy leaflet-zoom-animated:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-marker-icon mk mk-from leaflet-z:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-marker-icon mk mk-from leaflet-z:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2125ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2183ms t sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2185ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2384ms t sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:leaflet-pane leaflet-map-pane:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:leaflet-control-zoom-in:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:leaflet-control-zoom-out:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:leaflet-proxy leaflet-zoom-animated:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2449ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2482ms t sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+[console warning] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu
+[console warning] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu
+[console warning] Expected value to be of type number, but found null instead.
+[console warning] Expected value to be of type number, but found null instead.
+[console warning] Expected value to be of type number, but found null instead.
+[req 78253] https://bmulsxfdpkaqogyfgygo.supabase.co/functions/v1/geo
+[req 78253] https://photon.komoot.io/api?q=Lotnisko+Pozna%C5%84&limit=8&lat=51.9356&lon=15.5064&location_bias_scale=0.4
+[req 80533] https://57-131-166-229.sslip.io/route/v1/driving/15.5064,51.9356;17.0482137,52.4359494?overview=full&geometries=geojson&exclude=toll
+===== Lotnisko Poznań
+27ms mut:sgTo:hidden sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+27ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:class sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+27ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+27ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=0 sheetH=480 mapH=480 app=- cls=view cl-order cl-typing vv=480 inner=480 act=BUTTON
+36ms vv-resize sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+37ms mut:leaflet-pane leaflet-map-pane:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+37ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+37ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+37ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+37ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+41ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+55ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+100ms t sheetTop=0 sheetH=780 mapH=780 app=- cls=view cl-order cl-typing vv=780 inner=780 act=BODY
+232ms mut:sgTo:hidden sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+232ms mut:view:class sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1563ms mut:leaflet-pane leaflet-map-pane:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1563ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1563ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1563ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1563ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1563ms mut:leaflet-proxy leaflet-zoom-animated:style sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1564ms t sheetTop=328 sheetH=452 mapH=291 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-pane leaflet-map-pane:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-pane leaflet-map-pane:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-marker-icon mk mk-from leaflet-z:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-marker-icon mk mk-from leaflet-z:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-marker-icon mk mk-to leaflet-zoo:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-control-zoom-in:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-control-zoom-out:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-gl-layer maplibregl-map:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:maplibregl-canvas leaflet-image-layer le:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:leaflet-proxy leaflet-zoom-animated:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1584ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1588ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1588ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1589ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1589ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1591ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1662ms mut:leaflet-gl-layer maplibregl-map:class sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+1662ms t sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2285ms mut:leaflet-proxy leaflet-zoom-animated:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2285ms mut:[object SVGAnimatedString]:style sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
+2300ms t sheetTop=351 sheetH=430 mapH=313 app=- cls=view cl-order vv=780 inner=780 act=BODY
