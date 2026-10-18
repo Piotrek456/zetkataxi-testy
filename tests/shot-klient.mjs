@@ -22,4 +22,12 @@ await p.screenshot({ path: 'shots/klient-2-dokad.png' });
 await p.type('#to', 'Kupiecka', { delay: 60 });
 await p.waitForTimeout(2500);
 await p.screenshot({ path: 'shots/klient-3-podpowiedzi.png' });
+// wybór podpowiedzi → powrót mapy z trasą
+await p.click('#sgTo button:not([disabled])', { timeout: 8000 }).catch(() => {});
+await p.setViewportSize({ width: 360, height: 780 });   // klawiatura schowana
+await p.evaluate(() => document.activeElement && document.activeElement.blur());
+await p.waitForTimeout(5000);
+await p.screenshot({ path: 'shots/klient-4-cel.png' });
+await p.waitForTimeout(8000);
+await p.screenshot({ path: 'shots/klient-5-cel-po-8s.png' });
 await b.close(); process.exit(0);
