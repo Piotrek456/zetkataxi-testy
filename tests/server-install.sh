@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Zetka Taxi · własny serwer tras i adresów (VPS z Ubuntu 24.04, 8 GB RAM).
-#   - OSRM: trasy, kilometry, nawigacja — tylko województwo lubuskie
+#   - OSRM: trasy, kilometry, nawigacja — lubuskie + wielkopolskie, dolnośląskie, zachodniopomorskie, łódzkie, mazowieckie (bez płatnych odcinków)
 #   - Photon: podpowiedzi adresów i adres z pozycji GPS — tylko województwo lubuskie (budowany z Nominatim, który działa tylko podczas aktualizacji)
 #   - kursy i adresy poza lubuskim aplikacja liczy przez publiczne serwery (jak dotąd)
 #   - Caddy: HTTPS (certyfikat Let's Encrypt) pod adresem <ip>.sslip.io albo własną domeną (DOMAIN=...)
@@ -13,7 +13,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 BASE=/opt/zetka
 JAVA=/usr/lib/jvm/java-21-openjdk-amd64/bin/java   # Photon wymaga Javy 21
-PBF="https://download.geofabrik.de/europe/poland/lubuskie-latest.osm.pbf"
+PBF="https://download.geofabrik.de/europe/poland/lubuskie-latest.osm.pbf"   # adresy (Photon): tylko lubuskie
+REGIONS="lubuskie wielkopolskie dolnoslaskie zachodniopomorskie lodzkie mazowieckie"   # trasy (OSRM)
 NOMI_IMG="mediagis/nominatim:4.5"
 NOMI_PW="$(head -c 18 /dev/urandom | base64 | tr -dc A-Za-z0-9)"
 OSRM_IMG="ghcr.io/project-osrm/osrm-backend:v5.27.1"
@@ -24,7 +25,7 @@ mkdir -p "$BASE"/{osrm,photon,bin}
 
 log "Pakiety systemowe"
 apt-get update -qq
-apt-get install -y -qq ca-certificates curl openjdk-21-jre-headless ufw jq >/dev/null
+apt-get install -y -qq ca-certificates curl openjdk-21-jre-headless ufw jq osmium-tool >/dev/null
 command -v docker >/dev/null || apt-get install -y -qq docker.io >/dev/null   # na czystym serwerze; gdy Docker już jest — zostaje
 systemctl enable --now docker >/dev/null
 
@@ -36,10 +37,13 @@ fi
 # ------------------------------------------------------------------ skrypt aktualizacji (też pierwsza instalacja)
 cat > "$BASE/bin/update-osrm.sh" <<EOF
 #!/usr/bin/env bash
-# pobiera mapę lubuskiego z Geofabrik, liczy graf OSRM w nowym katalogu i podmienia działający serwer
+# trasy: lubuskie + wielkopolskie, dolnośląskie, zachodniopomorskie, łódzkie, mazowieckie (Geofabrik) -> jedna mapa -> graf OSRM w nowym katalogu -> podmiana działającego serwera
+# aplikacja pyta z exclude=toll (bez płatnych odcinków) — profil car.lua to obsługuje
 set -euo pipefail
-NEW=$BASE/osrm/build-\$(date +%Y%m%d%H%M); mkdir -p \$NEW
-curl -fsSL -o \$NEW/map.osm.pbf "$PBF"
+NEW=$BASE/osrm/build-\$(date +%Y%m%d%H%M); mkdir -p \$NEW/src
+for W in $REGIONS; do curl -fsSL -o \$NEW/src/\$W.osm.pbf "https://download.geofabrik.de/europe/poland/\$W-latest.osm.pbf"; done
+osmium merge --overwrite -o \$NEW/map.osm.pbf \$NEW/src/*.osm.pbf
+rm -rf \$NEW/src
 docker run --rm -v \$NEW:/data $OSRM_IMG osrm-extract -p /opt/car.lua /data/map.osm.pbf
 docker run --rm -v \$NEW:/data $OSRM_IMG osrm-partition /data/map.osrm
 docker run --rm -v \$NEW:/data $OSRM_IMG osrm-customize /data/map.osrm
@@ -90,7 +94,7 @@ WantedBy=multi-user.target
 EOF
 systemctl daemon-reload; systemctl enable zetka-photon >/dev/null
 
-log "Trasy (OSRM) — pobieranie i przeliczanie mapy lubuskiego, kilka minut"
+log "Trasy (OSRM) — pobieranie i przeliczanie mapy 6 województw, ok. 30–40 minut"
 "$BASE/bin/update-osrm.sh"
 log "Adresy (Photon) — import adresów lubuskiego, ok. 20–40 minut"
 "$BASE/bin/update-photon.sh"
