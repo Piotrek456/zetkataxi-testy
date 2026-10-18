@@ -19,7 +19,7 @@ await p.tap('#to');
 await p.setViewportSize({ width: 360, height: 480 });   // klawiatura zajmuje dół ekranu
 await p.waitForTimeout(1200);
 await p.screenshot({ path: 'shots/klient-2-dokad.png' });
-await p.type('#to', 'Kupiecka', { delay: 60 });
+await p.type('#to', 'Suwalska 2B', { delay: 60 });
 await p.waitForTimeout(2500);
 await p.screenshot({ path: 'shots/klient-3-podpowiedzi.png' });
 // wybór podpowiedzi → powrót mapy z trasą
