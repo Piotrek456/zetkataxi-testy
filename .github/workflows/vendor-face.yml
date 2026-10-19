@@ -14,7 +14,8 @@ jobs:
           mkdir -p vendor/face; : > vendor/face/STATUS
           get() { code=$(curl -sSL -w '%{http_code}' -o "vendor/face/$2" "$B/$1"); echo "$code $1" >> vendor/face/STATUS; [ "$code" = 200 ] || rm -f "vendor/face/$2"; }
           get dist/face-api.esm.js face-api.esm.js
-          for f in tiny_face_detector_model face_landmark_68_model face_recognition_model; do get model/$f.json $f.json; get model/$f.bin $f.bin; done
+          for f in tiny_face_detector_model face_landmark_68_model face_recognition_model; do get model/$f.bin $f.bin; get model/$f-weights_manifest.json $f-weights_manifest.json; get model/$f.json $f.json; done
+          curl -sSL "https://data.jsdelivr.com/v1/packages/npm/@vladmandic/face-api@$V?structure=flat" -o vendor/face/FILES.json || true
           get LICENSE LICENSE
           cat vendor/face/STATUS; ls -la vendor/face
       - run: |
