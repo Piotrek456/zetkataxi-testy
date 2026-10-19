@@ -1,8 +1,11 @@
 200 dist/face-api.esm.js
-404 model/tiny_face_detector_model.json
 200 model/tiny_face_detector_model.bin
-404 model/face_landmark_68_model.json
+200 model/tiny_face_detector_model-weights_manifest.json
+404 model/tiny_face_detector_model.json
 200 model/face_landmark_68_model.bin
-404 model/face_recognition_model.json
+200 model/face_landmark_68_model-weights_manifest.json
+404 model/face_landmark_68_model.json
 200 model/face_recognition_model.bin
+200 model/face_recognition_model-weights_manifest.json
+404 model/face_recognition_model.json
 200 LICENSE

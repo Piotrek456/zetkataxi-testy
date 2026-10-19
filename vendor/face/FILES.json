@@ -1,0 +1,1282 @@
+{
+	"type": "npm",
+	"name": "@vladmandic/face-api",
+	"version": "1.7.15",
+	"default": "/dist/face-api.esm.min.js",
+	"files": [
+		{
+			"name": "/.build.json",
+			"hash": "vdWRyx5MPVfM0eA4BgQXjOmgAwHbYMbG5bSjgIqnQ5g=",
+			"size": 3891
+		},
+		{
+			"name": "/.eslintrc.json",
+			"hash": "IsCTmk0QhBncYWyMeC8waz1M/m34A0qx/oL79ErvKgg=",
+			"size": 2431
+		},
+		{
+			"name": "/.github/FUNDING.yml",
+			"hash": "17fyethl11WOELaEeGfVaCWp0PZ36mALJX7TxKSMWik=",
+			"size": 738
+		},
+		{
+			"name": "/.github/ISSUE_TEMPLATE/issue.md",
+			"hash": "HLzmN7bVO1Va0L93/k2Fnqx4LkNaeFKKeTdC9jhTTN4=",
+			"size": 657
+		},
+		{
+			"name": "/.github/PULL_REQUEST_TEMPLATE/pull_request_template.md",
+			"hash": "LIFleert5xOd/ZO4kw2wdblkLddImJDyfJW+5QbPOW8=",
+			"size": 30
+		},
+		{
+			"name": "/.github/workflows/codeql-analysis.yml",
+			"hash": "i67fPeOd1ErjfmzXjRpVf2IXzlftFAwmwVKj+Ubvnbw=",
+			"size": 2364
+		},
+		{
+			"name": "/.hintrc",
+			"hash": "G5Kf3wyzJ/lRu6L+b3VIV7zcm30HPjknRqNBtzH04lc=",
+			"size": 192
+		},
+		{
+			"name": "/.markdownlint.json",
+			"hash": "2AHkggwk8cuvSU/pcFb6M8g7ZiZ069hhRKBz2mQGwLw=",
+			"size": 92
+		},
+		{
+			"name": "/.vscode/settings.json",
+			"hash": "N+4TJUb38fe9dsdnmfI/jRla/tuj1JQBavGlwjCzVpI=",
+			"size": 54
+		},
+		{
+			"name": "/api-extractor.json",
+			"hash": "NG8Tkg1lpcYc0N7gisWwSZ1FKr/MMcya+qSl3IInox8=",
+			"size": 967
+		},
+		{
+			"name": "/build.js",
+			"hash": "eygjWpZ5aQp5ahDbLpE9OvxUItXoRuL2HUnlqn9celA=",
+			"size": 3123
+		},
+		{
+			"name": "/CHANGELOG.md",
+			"hash": "lHHsNNpVzWV71jSSXMzvJuKcwRnAV0O1tyCrQ2IMLmg=",
+			"size": 8909
+		},
+		{
+			"name": "/CODE_OF_CONDUCT",
+			"hash": "nkBSa5R76FNX70H7dF6kt9VM/fIjfUGdnkEZW8xxdAA=",
+			"size": 895
+		},
+		{
+			"name": "/CONTRIBUTING",
+			"hash": "pKC0uAeRqN0F5ui9VpEoLMPlOdkxLNDi6bd+4BjaN9A=",
+			"size": 538
+		},
+		{
+			"name": "/demo/facemesh.png",
+			"hash": "LmS5huP/OWjFl/oJpiDMkUkOEV+0BIfXnYX2QlCv8Cw=",
+			"size": 14252
+		},
+		{
+			"name": "/demo/index.html",
+			"hash": "dNw6W+qIT+b2sTs9M6SQ6pISavmTDhvAJDmi7Pm7ILU=",
+			"size": 1067
+		},
+		{
+			"name": "/demo/index.js",
+			"hash": "mKM31LNxpBtAo/43Qffy595gloqfSKznFZM5ZHKa2L0=",
+			"size": 7328
+		},
+		{
+			"name": "/demo/node.js",
+			"hash": "eFUpHUIOLXRxw9Tr12MslC6vhYz7EHdrI9CrNaahhSw=",
+			"size": 5648
+		},
+		{
+			"name": "/demo/node-canvas.js",
+			"hash": "VB8VEq1q5E2vkYIvREW7EtLA1fz2jYGVUl9t8+rSUe8=",
+			"size": 4204
+		},
+		{
+			"name": "/demo/node-face-compare.js",
+			"hash": "CX/9Eua3JED2A0Z59irekV4YRxRtMjQPAB+REpTmyqk=",
+			"size": 1490
+		},
+		{
+			"name": "/demo/node-image.js",
+			"hash": "5zsSjjaZIboFIDUw2zMsMCan3LPDMx9hIr81fT3sA24=",
+			"size": 2632
+		},
+		{
+			"name": "/demo/node-match.js",
+			"hash": "rkLepDBF1B2dl8z3mDpsFxtDfW+vEDZYLvsE7J8oaqo=",
+			"size": 3281
+		},
+		{
+			"name": "/demo/node-multiprocess.js",
+			"hash": "M7/hJOQ8cg0zSaKJ0N3teTGfoshhsefR1pxcZc1JtA4=",
+			"size": 3716
+		},
+		{
+			"name": "/demo/node-multiprocess-worker.js",
+			"hash": "eBtPzK+dz8tt/t6ysxdzn4vFxSxl/gU8hS9rCLgqxNo=",
+			"size": 2936
+		},
+		{
+			"name": "/demo/node-simple.js",
+			"hash": "5jlRKk79kRWQvXHW06yC9mi8IBFpF4tqkBSiKKsjVXE=",
+			"size": 1417
+		},
+		{
+			"name": "/demo/node-wasm.js",
+			"hash": "bEq5uSPi/OGJCR0dM9Of2iLMJPYZm9cOAyxtJi5Xjzk=",
+			"size": 2733
+		},
+		{
+			"name": "/demo/sample1.jpg",
+			"hash": "jsrksmey0xaeBuAMfe6XCXqiqUY11FIW93MqX0lDy1E=",
+			"size": 144516
+		},
+		{
+			"name": "/demo/sample2.jpg",
+			"hash": "fStgrm8TvzD0IuBN+HRRCBoCyD3kaQVvJa+0S3AAxpE=",
+			"size": 181758
+		},
+		{
+			"name": "/demo/sample3.jpg",
+			"hash": "jrCBye+xQ3D6lNn+q55fvq/RmmJ0kYU6gMK/Z/f/qTY=",
+			"size": 221049
+		},
+		{
+			"name": "/demo/sample4.jpg",
+			"hash": "cp76WSMGHUDrTtXyZ6GMx7i6b4UrsnV7Fti35JN0dvw=",
+			"size": 210824
+		},
+		{
+			"name": "/demo/sample5.jpg",
+			"hash": "bUUJXrsYLY+XXAeQ4OTu/Yb7tAYJz0snF3bZLhJmKTg=",
+			"size": 166400
+		},
+		{
+			"name": "/demo/sample6.jpg",
+			"hash": "m6rYD51eMG+5uMCRPUREXx6VhI3zF1MO+wPQk0xXuoc=",
+			"size": 302445
+		},
+		{
+			"name": "/demo/screenshot-images.png",
+			"hash": "/hVL+TawT9nHDYrBo37Kied6jdwRJhejOMEKsiZg6V8=",
+			"size": 582959
+		},
+		{
+			"name": "/demo/screenshot-webcam.png",
+			"hash": "hEBxub6NQ1cMAZq0pf0xZqgB9JqCMDy5jMIYnVCwbZo=",
+			"size": 245503
+		},
+		{
+			"name": "/demo/webcam.html",
+			"hash": "B1pFATy/is1GQY1EJf3x3fMWGBCfdaFVtxfaEIuP4g4=",
+			"size": 1269
+		},
+		{
+			"name": "/demo/webcam.js",
+			"hash": "y/3mKyz8nCy6FiUWewqCrNnUrk+v1po5gfJxsrB4dNQ=",
+			"size": 8140
+		},
+		{
+			"name": "/dist/face-api.d.ts",
+			"hash": "bFQtfooPrSd7rGSYbpBUISJ77/KEX4LBSYgxRPxvFHg=",
+			"size": 34
+		},
+		{
+			"name": "/dist/face-api.esm.d.ts",
+			"hash": "bFQtfooPrSd7rGSYbpBUISJ77/KEX4LBSYgxRPxvFHg=",
+			"size": 34
+		},
+		{
+			"name": "/dist/face-api.esm.js",
+			"hash": "FPDpgT9tnxSpza+2VDp0g167EwhQkOKUIxCnpzf1XZo=",
+			"size": 1333462
+		},
+		{
+			"name": "/dist/face-api.esm.js.map",
+			"hash": "UJ7xjtqec/G92F24+qzuyc4fFk7iGDxPkVwF6y1EtjQ=",
+			"size": 3137681
+		},
+		{
+			"name": "/dist/face-api.esm-nobundle.d.ts",
+			"hash": "bFQtfooPrSd7rGSYbpBUISJ77/KEX4LBSYgxRPxvFHg=",
+			"size": 34
+		},
+		{
+			"name": "/dist/face-api.esm-nobundle.js",
+			"hash": "CtzRtnOSKPpsOOEaar+67DyUbFIZVMYvxk+m1iw80rA=",
+			"size": 82936
+		},
+		{
+			"name": "/dist/face-api.js",
+			"hash": "AWD3rzqMeM7ORcfsx2U4O610vs/UOLt4fN1iey1vLPY=",
+			"size": 1333943
+		},
+		{
+			"name": "/dist/face-api.node.d.ts",
+			"hash": "bFQtfooPrSd7rGSYbpBUISJ77/KEX4LBSYgxRPxvFHg=",
+			"size": 34
+		},
+		{
+			"name": "/dist/face-api.node.js",
+			"hash": "dhJGWY9SjuXY4mfsYJtUQU+YRZFO1CiG3Luu7FdxYn8=",
+			"size": 86188
+		},
+		{
+			"name": "/dist/face-api.node-gpu.d.ts",
+			"hash": "bFQtfooPrSd7rGSYbpBUISJ77/KEX4LBSYgxRPxvFHg=",
+			"size": 34
+		},
+		{
+			"name": "/dist/face-api.node-gpu.js",
+			"hash": "RQp7UheNbZnxOXNzSydIAlG6gTyr3x5WQkaTto7tMT8=",
+			"size": 86192
+		},
+		{
+			"name": "/dist/face-api.node-wasm.d.ts",
+			"hash": "bFQtfooPrSd7rGSYbpBUISJ77/KEX4LBSYgxRPxvFHg=",
+			"size": 34
+		},
+		{
+			"name": "/dist/face-api.node-wasm.js",
+			"hash": "TMZ1SBk9/QVC2kPXIvHNzQFbfoZwg+j3Yn07NuUrR84=",
+			"size": 86242
+		},
+		{
+			"name": "/dist/tfjs.esm.d.ts",
+			"hash": "1ZB9CQqjFY2COL+rru/TqhwQboj2cva1yKx62Tsevro=",
+			"size": 1293
+		},
+		{
+			"name": "/dist/tfjs.esm.js",
+			"hash": "6tP+Zvi/FD5UZGuQu+lQXmbsOjjoEULGXf10CjqQtLw=",
+			"size": 1254071
+		},
+		{
+			"name": "/dist/tfjs.version.d.ts",
+			"hash": "IsNHlJgCt7R481xtvG1DmZOoaM5n7ix2/03cySBteO0=",
+			"size": 212
+		},
+		{
+			"name": "/dist/tfjs.version.js",
+			"hash": "ERNAozAWQ2WRi0SKaU7hwxUiVSzKEDmUU7oQKDYlQPs=",
+			"size": 325
+		},
+		{
+			"name": "/favicon.ico",
+			"hash": "vCc7Zg4pCeIIyVkBzT19IXx/JkPJ3C4p5U43AgGXsNs=",
+			"size": 5063
+		},
+		{
+			"name": "/LICENSE",
+			"hash": "mjRCt5rK9PvHwuB7fi2PhK+bs4cb8Ipp2AMEqwBkDpo=",
+			"size": 1067
+		},
+		{
+			"name": "/model/age_gender_model.bin",
+			"hash": "SfkrvAr+8jQsQ4XkorCsttenJ8bwqlOUmXGagaz5q6o=",
+			"size": 429708
+		},
+		{
+			"name": "/model/age_gender_model-weights_manifest.json",
+			"hash": "dLYL8+v5gb9OZh6cyjoYVhThCyXXlxGLYuKmjT/yVp8=",
+			"size": 8392
+		},
+		{
+			"name": "/model/face_expression_model.bin",
+			"hash": "mphA8s8fTH6rlfGXUSVpNFwA0kJnVNRgi5KvMOAwDz0=",
+			"size": 329468
+		},
+		{
+			"name": "/model/face_expression_model-weights_manifest.json",
+			"hash": "WzScF8eDbaUG4DQizWRhx0CF2LsnE61BFGR9xdKBdMg=",
+			"size": 6980
+		},
+		{
+			"name": "/model/face_landmark_68_model.bin",
+			"hash": "RhHvZch9g20D1oSzDuxNGV2LIZ+h3Vj8WJRYMca5KZs=",
+			"size": 356840
+		},
+		{
+			"name": "/model/face_landmark_68_model-weights_manifest.json",
+			"hash": "ykiGY5+G6Zs5/tDBVfgbYzFyJXc72WFnFuiHsBUzick=",
+			"size": 8485
+		},
+		{
+			"name": "/model/face_landmark_68_tiny_model.bin",
+			"hash": "uY6fL32nb4pt2pdBo27UhbIkuInVUt4rLBuxYhf2e/w=",
+			"size": 77224
+		},
+		{
+			"name": "/model/face_landmark_68_tiny_model-weights_manifest.json",
+			"hash": "mhpd0Z/YFP1QlcPLWPjg0xk7jFuaZxWzCmnVWa6jGtQ=",
+			"size": 4806
+		},
+		{
+			"name": "/model/face_recognition_model.bin",
+			"hash": "tBPkINaECyd1+6MgCNtvPN2wfUhZZ/tCz883nBaoxYk=",
+			"size": 6444032
+		},
+		{
+			"name": "/model/face_recognition_model-weights_manifest.json",
+			"hash": "y6/6UBsLknWhK2M1emhD5+MMBU4ckVHhpfh5sm4ymGs=",
+			"size": 19615
+		},
+		{
+			"name": "/model/ssd_mobilenetv1_model.bin",
+			"hash": "KDVkBgLVNxiqaumkKJYyfqohvu/tBWwhjTLKfXnh4vg=",
+			"size": 5616957
+		},
+		{
+			"name": "/model/ssd_mobilenetv1_model-weights_manifest.json",
+			"hash": "iI90Tf+8hPXwYNH4Qn2XQjQZQ6LfqvkgXRACm356KVU=",
+			"size": 28233
+		},
+		{
+			"name": "/model/tiny_face_detector_model.bin",
+			"hash": "t1A8598xA5scQzFqm4Zcq2pw3XSMxgLT+ii1UVA8OHE=",
+			"size": 193321
+		},
+		{
+			"name": "/model/tiny_face_detector_model-weights_manifest.json",
+			"hash": "XRr0hJrEjVuYX0qbFgEMUSNT3db8xj1Q/QvJ6eZCluU=",
+			"size": 3219
+		},
+		{
+			"name": "/package.json",
+			"hash": "zDr4y1RNN1yzfVfCILu53qrSItVz7Rw5SXvf+1gyvrc=",
+			"size": 2524
+		},
+		{
+			"name": "/README.md",
+			"hash": "pJexDD0WzpaP1o4dR89AMbvFRUgGrn7qcSSH3Po4PsE=",
+			"size": 26231
+		},
+		{
+			"name": "/SECURITY.md",
+			"hash": "NRoeKTKiON210wR1AWirjAunf9NlLt1H/gki1ifekRk=",
+			"size": 173
+		},
+		{
+			"name": "/src/ageGenderNet/AgeGenderNet.ts",
+			"hash": "td4tKCnBh1Uo6gwRnQO8QGkDW1FPkd7thWWZMwYYXeI=",
+			"size": 4265
+		},
+		{
+			"name": "/src/ageGenderNet/extractParams.ts",
+			"hash": "vj/19h378eJUd4tAeom+e75qSvYTsgtIoyxX12n1I40=",
+			"size": 778
+		},
+		{
+			"name": "/src/ageGenderNet/extractParamsFromWeightMap.ts",
+			"hash": "k2NEQeBhcl/GkyvJ5vIqWL6FOcUREpCgQqfVCK8B08I=",
+			"size": 888
+		},
+		{
+			"name": "/src/ageGenderNet/index.ts",
+			"hash": "OPLp2CmCEE2W3yiikEggN2SNa4WdDxOg7nx+REvuSEA=",
+			"size": 57
+		},
+		{
+			"name": "/src/ageGenderNet/types.ts",
+			"hash": "Z6NDERh4/XccOwhrFMzYAefl4yxclqNxk9Kef18+TTQ=",
+			"size": 525
+		},
+		{
+			"name": "/src/classes/BoundingBox.ts",
+			"hash": "zQCHCzP8Jlx5AXuMd0awWOarUsGtq5a1r58UYf1h/Ww=",
+			"size": 369
+		},
+		{
+			"name": "/src/classes/Box.ts",
+			"hash": "WfiLHQGQxxNCpyUbelE31h7XB9xG4bFPu8qSfzzoeYk=",
+			"size": 5610
+		},
+		{
+			"name": "/src/classes/Dimensions.ts",
+			"hash": "A5QpWRi4VejEVA5hqChWQ8C/5wWRGPSp298lFmq7Ypo=",
+			"size": 747
+		},
+		{
+			"name": "/src/classes/FaceDetection.ts",
+			"hash": "zgXTsk4dfPFYo7jdaIkqgQKqQPVkIPTEdojcm1Hek90=",
+			"size": 665
+		},
+		{
+			"name": "/src/classes/FaceLandmarks.ts",
+			"hash": "/ky3iPcZ9TWRqpCmfuv+VEIIuvebEotUVDW0eAGjk1k=",
+			"size": 4202
+		},
+		{
+			"name": "/src/classes/FaceLandmarks5.ts",
+			"hash": "M54U526FLAOAErMLvSa/1DhPyijnORNu6oyHQW1K2bw=",
+			"size": 369
+		},
+		{
+			"name": "/src/classes/FaceLandmarks68.ts",
+			"hash": "cFn6raKR1yFT7g9XDNz0+P0aTuy5rpv2SszpuCpK4Cg=",
+			"size": 924
+		},
+		{
+			"name": "/src/classes/FaceMatch.ts",
+			"hash": "aWPuzHIHiwSVC9c1wDWi9V30DtkGa90xOs9YzJAgo38=",
+			"size": 570
+		},
+		{
+			"name": "/src/classes/index.ts",
+			"hash": "9sfNxoWhOfAfdLCz5qNm63Yn8CQPQE0DGQ2nD6sR+tA=",
+			"size": 436
+		},
+		{
+			"name": "/src/classes/LabeledBox.ts",
+			"hash": "3v39L4aeMaFxV/tsw3DkHvdpllcTI7VxAWvEiuc3JLw=",
+			"size": 633
+		},
+		{
+			"name": "/src/classes/LabeledFaceDescriptors.ts",
+			"hash": "EbEZaR7yRAX4fx13uUZInTonVkJ0uKVYVOQxL+oE55Q=",
+			"size": 1074
+		},
+		{
+			"name": "/src/classes/ObjectDetection.ts",
+			"hash": "2MvEHhAaomDsoVIA3eThebLvBTOtIaqIXkxNjqMxpV0=",
+			"size": 1429
+		},
+		{
+			"name": "/src/classes/Point.ts",
+			"hash": "TWwTr2GB/TiW8kqpfekeYxRBh+oDCr8ArcNXif+ckqE=",
+			"size": 927
+		},
+		{
+			"name": "/src/classes/PredictedBox.ts",
+			"hash": "Q+EFXWD6CkDKs7SDPe+M0salfh08ik+O1ruWaXdTbUc=",
+			"size": 954
+		},
+		{
+			"name": "/src/classes/Rect.ts",
+			"hash": "CAGiLxPqkejgLeo5sSf/GV9VtegyTKl7JJgys5RTTgM=",
+			"size": 333
+		},
+		{
+			"name": "/src/common/convLayer.ts",
+			"hash": "glKQMFDLiMEd+m3ccDra6KdnsgFuKgz8Ww/Vu5T6V/U=",
+			"size": 419
+		},
+		{
+			"name": "/src/common/depthwiseSeparableConv.ts",
+			"hash": "EJ6j2EewgBYXkTiqiZlLhmmeYUqKPI+w7XITQCfxHDE=",
+			"size": 414
+		},
+		{
+			"name": "/src/common/disposeUnusedWeightTensors.ts",
+			"hash": "aS6dNQBAjrlIuWxbCRAoBJjd3hgKxcNOb5vIw2P1czs=",
+			"size": 290
+		},
+		{
+			"name": "/src/common/extractConvParamsFactory.ts",
+			"hash": "EIkFUkqSw8uOHkrzBNlP/fb5cZhx4g638uKo/5CZWAM=",
+			"size": 766
+		},
+		{
+			"name": "/src/common/extractFCParamsFactory.ts",
+			"hash": "Fb8uJpuidI6GVsAIIErd3KY67hlIcoQDFe8SUivY26k=",
+			"size": 711
+		},
+		{
+			"name": "/src/common/extractSeparableConvParamsFactory.ts",
+			"hash": "SbmRDZbRv4WsVNhUVaH/YmpNMtSp5QCKM9wua16MTKk=",
+			"size": 1533
+		},
+		{
+			"name": "/src/common/extractWeightEntryFactory.ts",
+			"hash": "1Uaufl7QgTlvurEZIxL0ut3Irgm567VoLzOJkJrNuzI=",
+			"size": 579
+		},
+		{
+			"name": "/src/common/extractWeightsFactory.ts",
+			"hash": "wbYfdJFRx4xcn4NbJ+Iue5eMzvoKGFbf8rs+5edwuvA=",
+			"size": 441
+		},
+		{
+			"name": "/src/common/fullyConnectedLayer.ts",
+			"hash": "3fn7XUYfKTaGanXkow3T5nIE3HoFty3OZd81cJz08oo=",
+			"size": 263
+		},
+		{
+			"name": "/src/common/getModelUris.ts",
+			"hash": "ka8XotVufvtkInaihSQxOlWbUhLhyMhWjuJ2ogy8Ckg=",
+			"size": 1052
+		},
+		{
+			"name": "/src/common/index.ts",
+			"hash": "spdcJlKtU0x0p4DHSJeDIOTMt2k31iX0V12tS9CYxFE=",
+			"size": 399
+		},
+		{
+			"name": "/src/common/loadConvParamsFactory.ts",
+			"hash": "qkGeLz6NVCyP41SpDnkaRvJtw1ScaCGGiTRd99od8sw=",
+			"size": 466
+		},
+		{
+			"name": "/src/common/types.ts",
+			"hash": "MfEPXljEY3Zjjold6dA54v0klQxFw0ta4YR7/fe3srk=",
+			"size": 797
+		},
+		{
+			"name": "/src/dom/awaitMediaLoaded.ts",
+			"hash": "Byka1WkE0bbfN31o+tleGC6rKpfDupKaQaALgDkYk3w=",
+			"size": 970
+		},
+		{
+			"name": "/src/dom/bufferToImage.ts",
+			"hash": "e6DLSpQA2qSoqQFJC3N74WDR6Lby8nWOakqmtRUqi18=",
+			"size": 687
+		},
+		{
+			"name": "/src/dom/bufferToVideo.ts",
+			"hash": "OnSD9Ku4hDhnJ8Ptm+unnTEjg9qAuLB4Pt/0tY0Tg5Y=",
+			"size": 502
+		},
+		{
+			"name": "/src/dom/createCanvas.ts",
+			"hash": "FDBbG+Ap5mGosRIVmeNX7NArOg7o0rRrMhL+BcNoxJ8=",
+			"size": 1139
+		},
+		{
+			"name": "/src/dom/extractFaces.ts",
+			"hash": "B42xmtv+CRDNAtwUnUYCuB/Od68yW+gK0XDayL9gI8g=",
+			"size": 1742
+		},
+		{
+			"name": "/src/dom/extractFaceTensors.ts",
+			"hash": "mo9t2Kd2psyGPGDD8rDkv/tnMonWs7Y7MpSYPG/BlZ8=",
+			"size": 1743
+		},
+		{
+			"name": "/src/dom/fetchImage.ts",
+			"hash": "tG2K9uWlCFHdYrHW6U84PywmUsuAKqlLQRYwS6ufAMI=",
+			"size": 451
+		},
+		{
+			"name": "/src/dom/fetchJson.ts",
+			"hash": "dAuS2nGD2Un4vzywoaN9+mLBpCWiPh52pAgcnos25GY=",
+			"size": 155
+		},
+		{
+			"name": "/src/dom/fetchNetWeights.ts",
+			"hash": "FD0/v1WPQeNxXeU0aB873VG81c/lSRNr0RBBw9EABMI=",
+			"size": 200
+		},
+		{
+			"name": "/src/dom/fetchOrThrow.ts",
+			"hash": "SmAfwroGe05LuVPjzvMLxwH/XShc590LtcKM8LtTMRA=",
+			"size": 390
+		},
+		{
+			"name": "/src/dom/fetchVideo.ts",
+			"hash": "7MUHMzLkZbkmz/Ybk4Oqsgfeoq1uj3WSFGuiwRFpHLI=",
+			"size": 451
+		},
+		{
+			"name": "/src/dom/getContext2dOrThrow.ts",
+			"hash": "SfrMhVT3oA7hqPuGnbQiaaUZURx9hnCbY56I4s+Dbmc=",
+			"size": 668
+		},
+		{
+			"name": "/src/dom/getMediaDimensions.ts",
+			"hash": "frltL+2zacPN/KfGHNHJ7IhULBsOO8vWe8JG2XBZGxQ=",
+			"size": 529
+		},
+		{
+			"name": "/src/dom/imageTensorToCanvas.ts",
+			"hash": "RJ4vzl4+lNJDcsHLsRAcoEN2CTj+7f3Ao/5n5FI4hDs=",
+			"size": 618
+		},
+		{
+			"name": "/src/dom/imageToSquare.ts",
+			"hash": "++tfuRh7HZl8CC+Z8HG5RMxVIJoYUYuYk+eKWSjtyZg=",
+			"size": 1287
+		},
+		{
+			"name": "/src/dom/index.ts",
+			"hash": "IOeEAupwip7+lLMgV1bzEJ19hVySBPGjbs26jb5AgwI=",
+			"size": 726
+		},
+		{
+			"name": "/src/dom/isMediaElement.ts",
+			"hash": "rHYIaqvk1821Qy79B3lrDacHUdKxkRi7MUHJPu6IXcI=",
+			"size": 228
+		},
+		{
+			"name": "/src/dom/isMediaLoaded.ts",
+			"hash": "QPPf1+vfrMkp/11kuz/PRHyI9PHl0ID43Eo4d1i9Hmc=",
+			"size": 277
+		},
+		{
+			"name": "/src/dom/loadWeightMap.ts",
+			"hash": "cDeFaA8JeKYb38MT5ih9Qz8mv17K6eYnWMKG13LObPM=",
+			"size": 571
+		},
+		{
+			"name": "/src/dom/matchDimensions.ts",
+			"hash": "6p7oL4pcuaESZvNNgN4WfdgA0xIVIRlmZZofDScIXjA=",
+			"size": 392
+		},
+		{
+			"name": "/src/dom/NetInput.ts",
+			"hash": "04cv0/LNOo9qTKZRpg41z3pT/QQifhRcK0gk46Tbjgk=",
+			"size": 5184
+		},
+		{
+			"name": "/src/dom/resolveInput.ts",
+			"hash": "+320qlcf4VpR32zEVVpJk8NvD3fRxhDXRr3Ot3AqHKM=",
+			"size": 200
+		},
+		{
+			"name": "/src/dom/toNetInput.ts",
+			"hash": "YGNQPG/mezARM4OBJkzd11MigdWRlWnQeoKlBzjlHxs=",
+			"size": 2033
+		},
+		{
+			"name": "/src/dom/types.ts",
+			"hash": "Y4VTLQ3HOFuDAgqsefXWe0BFH1wUpkpMdEZfiRF39V0=",
+			"size": 356
+		},
+		{
+			"name": "/src/draw/DrawBox.ts",
+			"hash": "b9GjTEwglZ4OIowgRdqfpX7uhQgNWPhV1Am30XRVYvY=",
+			"size": 1834
+		},
+		{
+			"name": "/src/draw/drawContour.ts",
+			"hash": "O5cg7k7TtXsLwUGCiXgIYYFIUMc1lxHlZXtq0s+7IW8=",
+			"size": 530
+		},
+		{
+			"name": "/src/draw/drawDetections.ts",
+			"hash": "FJO3n5VtVTD75vnqlP1G3ovyoz9G2guTNVafI6ntSRI=",
+			"size": 1128
+		},
+		{
+			"name": "/src/draw/drawFaceExpressions.ts",
+			"hash": "58KlHjsnNs+7IICYW9qL5hxEwc+GcyxFA8AgF6natEY=",
+			"size": 1601
+		},
+		{
+			"name": "/src/draw/DrawFaceLandmarks.ts",
+			"hash": "LkcU//LbTgWv3fiZ6DOewpWqGNde7OxSmUxUONvy2h0=",
+			"size": 3536
+		},
+		{
+			"name": "/src/draw/DrawTextField.ts",
+			"hash": "dEy0CQlke3T8//zMlrxqe65gEZFriEy7PEpTeAIMmHU=",
+			"size": 4103
+		},
+		{
+			"name": "/src/draw/index.ts",
+			"hash": "n8PQrphn1a6X4ugmCvNSLhs8xsmgiD33fzpXVgskadI=",
+			"size": 201
+		},
+		{
+			"name": "/src/env/createBrowserEnv.ts",
+			"hash": "WYb1CreuCU0bQo/TVCKRiQj5KEVDyysowKbCrof8Imc=",
+			"size": 699
+		},
+		{
+			"name": "/src/env/createFileSystem.ts",
+			"hash": "9ZnReGqYEVrTfMkiQt7an5suFwje69/6JbQf8I2VqVM=",
+			"size": 810
+		},
+		{
+			"name": "/src/env/createNodejsEnv.ts",
+			"hash": "xYIQw1sRvRllZV37AOKm2LtEoWQnGEz5yUs8qYUjDNo=",
+			"size": 1497
+		},
+		{
+			"name": "/src/env/index.ts",
+			"hash": "39ChfdE0n0IQdWUJsGeFFMV2oE5wLbQBUNbEk9GcNmc=",
+			"size": 1817
+		},
+		{
+			"name": "/src/env/isBrowser.ts",
+			"hash": "MCgjWVG5JEtlHw/PCLA5ylmO9DZH94mUlfhQnygB9cU=",
+			"size": 354
+		},
+		{
+			"name": "/src/env/isNodejs.ts",
+			"hash": "iriNgi8mSwvDZ+xIRzznBEItNaHdQldZE9hGqYXUiho=",
+			"size": 184
+		},
+		{
+			"name": "/src/env/types.ts",
+			"hash": "C31rcPxaAr+aAtCw2tPgIjRoTI0EwWCpVPQCoBGh8qo=",
+			"size": 636
+		},
+		{
+			"name": "/src/euclideanDistance.ts",
+			"hash": "UbEWBN/LsjiZYZPJlWUqTlEHiOxnrXja+AX/WTnmYU0=",
+			"size": 398
+		},
+		{
+			"name": "/src/faceExpressionNet/FaceExpressionNet.ts",
+			"hash": "3Y6wroShzDzhWIPnqp8KfBgTqWNNZh8JYXVcOAOqJpY=",
+			"size": 1662
+		},
+		{
+			"name": "/src/faceExpressionNet/FaceExpressions.ts",
+			"hash": "keWEQpXJmqtH2cH55lcrj7ZnCp1sbUhPwmGHvpJrZow=",
+			"size": 851
+		},
+		{
+			"name": "/src/faceExpressionNet/index.ts",
+			"hash": "2FTHy2RZQDk/ScxYltqTDHpKURSqttbjw5XaJRO1M9o=",
+			"size": 72
+		},
+		{
+			"name": "/src/faceFeatureExtractor/denseBlock.ts",
+			"hash": "ST6oXHnYRaciT4WKHSO9evP40Yo9O+KNfEaoHUkitOA=",
+			"size": 2011
+		},
+		{
+			"name": "/src/faceFeatureExtractor/extractorsFactory.ts",
+			"hash": "q8lo8WRf6b9vZLEEU8zx5+cFEYj2unYJ1Uz3ynggUhY=",
+			"size": 1560
+		},
+		{
+			"name": "/src/faceFeatureExtractor/extractParams.ts",
+			"hash": "3RuyRkLu/MkaqqtMQ7wy0u6LxMN/lY6qipMPg2POb7k=",
+			"size": 1030
+		},
+		{
+			"name": "/src/faceFeatureExtractor/extractParamsFromWeightMap.ts",
+			"hash": "CH55moqFwr8Nr2RNl46sq34UpW4LlEm/yCF0bKcqABU=",
+			"size": 838
+		},
+		{
+			"name": "/src/faceFeatureExtractor/extractParamsFromWeightMapTiny.ts",
+			"hash": "ynOzH2HkJHZ00ExUphc2JezH+Lwx/Ga/LRtafu/5px4=",
+			"size": 802
+		},
+		{
+			"name": "/src/faceFeatureExtractor/extractParamsTiny.ts",
+			"hash": "jLCeb4kp3l+0+tP5PZTrXTgQAWRRJ6DKmBbpe0J+TYw=",
+			"size": 960
+		},
+		{
+			"name": "/src/faceFeatureExtractor/FaceFeatureExtractor.ts",
+			"hash": "8RppdDw0UEAxbVMe8R0D0PUB94G2rdQh1I8NXYL1gj4=",
+			"size": 1795
+		},
+		{
+			"name": "/src/faceFeatureExtractor/index.ts",
+			"hash": "Gdm6aUB+D6e3X7lo9ReRn9mbvGs7FQioj2YXqEdcvJw=",
+			"size": 84
+		},
+		{
+			"name": "/src/faceFeatureExtractor/loadParamsFactory.ts",
+			"hash": "zJLODpfVlmYwuj61vWMyBxAtEmSBka0nRfN64E+ODlU=",
+			"size": 1529
+		},
+		{
+			"name": "/src/faceFeatureExtractor/TinyFaceFeatureExtractor.ts",
+			"hash": "IgxSvkmLi6JfusoF07/R8nGs4Nf9+3ZaEj7olM1SP00=",
+			"size": 1805
+		},
+		{
+			"name": "/src/faceFeatureExtractor/types.ts",
+			"hash": "5obsMHIQ8anKnx4s1d5dD0ihGiVxIDFbOeI+zUCk+b8=",
+			"size": 1398
+		},
+		{
+			"name": "/src/faceLandmarkNet/FaceLandmark68Net.ts",
+			"hash": "M8ZnsMfZ6wUAkXnHwhCDxzzyr5nx9EfFRR6KvkIjOic=",
+			"size": 622
+		},
+		{
+			"name": "/src/faceLandmarkNet/FaceLandmark68NetBase.ts",
+			"hash": "dy58phd9O41NgxREsjvtLHXtI6gk22dAKKaRcOzjA7Q=",
+			"size": 3715
+		},
+		{
+			"name": "/src/faceLandmarkNet/FaceLandmark68TinyNet.ts",
+			"hash": "tfjSC2I331/cPBK4HzIXtCsnUPXtSM4JcO7Im0p/sCo=",
+			"size": 659
+		},
+		{
+			"name": "/src/faceLandmarkNet/index.ts",
+			"hash": "A7v+URN6trSsZJuXGYhNH4h20R3e6pnUwq7Ei0In2lI=",
+			"size": 194
+		},
+		{
+			"name": "/src/faceProcessor/extractParams.ts",
+			"hash": "EEds4KSTuLSq1A1npXV104lFdAw5fHlkBs8WdXjxqdQ=",
+			"size": 759
+		},
+		{
+			"name": "/src/faceProcessor/extractParamsFromWeightMap.ts",
+			"hash": "pQC1jn/yNDQsjpDKkSrDKZp7n7y+j+dNHTU+yFHpyTA=",
+			"size": 820
+		},
+		{
+			"name": "/src/faceProcessor/FaceProcessor.ts",
+			"hash": "u8pHzp6haIGiMDB79IG+9IQvn3m/EsR/jTayUNssZ7U=",
+			"size": 3037
+		},
+		{
+			"name": "/src/faceProcessor/types.ts",
+			"hash": "2Us83uUUy0UqYEhfFX/3ic63P4QkbcZZCfrD+9sd2lo=",
+			"size": 88
+		},
+		{
+			"name": "/src/faceProcessor/util.ts",
+			"hash": "wf6i2oCJoCEq+p2lHdT7tbrATUx+PcEZxOYki/1egRs=",
+			"size": 421
+		},
+		{
+			"name": "/src/faceRecognitionNet/convLayer.ts",
+			"hash": "SroUNUVOY9LPqQS04mAchJG54Ss5GuoDZV8+tvyOViE=",
+			"size": 850
+		},
+		{
+			"name": "/src/faceRecognitionNet/extractParams.ts",
+			"hash": "+rSqwbPObdSYfonmPJR3SclT/34ijvSSFQVXYNtloQ8=",
+			"size": 4892
+		},
+		{
+			"name": "/src/faceRecognitionNet/extractParamsFromWeightMap.ts",
+			"hash": "6MB7OJ+JjvyzYt7hpIa5iyKeTJhWU0t6paEpIbzzVZs=",
+			"size": 3098
+		},
+		{
+			"name": "/src/faceRecognitionNet/FaceRecognitionNet.ts",
+			"hash": "onZWM73Pa/wrANrpHcp/goP/nBANkUi+IArvra3GW1E=",
+			"size": 2968
+		},
+		{
+			"name": "/src/faceRecognitionNet/index.ts",
+			"hash": "4rmckDLUA5ejxuapZiNO2vC+t2b4hrHPlaZ/3OBW8nM=",
+			"size": 252
+		},
+		{
+			"name": "/src/faceRecognitionNet/residualLayer.ts",
+			"hash": "VS20igeS28mSSKLgtB6qQXFqoQAcxEHUl3uYWxGNrk8=",
+			"size": 1342
+		},
+		{
+			"name": "/src/faceRecognitionNet/scaleLayer.ts",
+			"hash": "3Sr0//y/5WGqJa6BOqsj25gMLnb9reaP69LZTFkhBdk=",
+			"size": 229
+		},
+		{
+			"name": "/src/faceRecognitionNet/types.ts",
+			"hash": "xmkO0/i5LJ0gL6ZfELinCAKengs5ILnDqd20tsHVY+w=",
+			"size": 889
+		},
+		{
+			"name": "/src/factories/index.ts",
+			"hash": "/seDVnuhL9+O+u7UE6pngA3mtSJeuzSEhWBuhjKT424=",
+			"size": 208
+		},
+		{
+			"name": "/src/factories/WithAge.ts",
+			"hash": "AvQHy8N/e+DkKH18Nm/boysbHu3JFVq1GfEp33JOEA4=",
+			"size": 334
+		},
+		{
+			"name": "/src/factories/WithFaceDescriptor.ts",
+			"hash": "lZ3gwXpvOLGGg31x9HYmjsp7Yo+LvvXJekX9fdcRSqM=",
+			"size": 301
+		},
+		{
+			"name": "/src/factories/WithFaceDetection.ts",
+			"hash": "9vbnZkQp+OzZeBwbSAkSrx14+itP6y7zalOfUjaNDCk=",
+			"size": 475
+		},
+		{
+			"name": "/src/factories/WithFaceExpressions.ts",
+			"hash": "qOPgCdRfdjUe9OlxwHs9+w8RJzEAcnIpS8mcNkxOPHk=",
+			"size": 511
+		},
+		{
+			"name": "/src/factories/WithFaceLandmarks.ts",
+			"hash": "fCWxPKj+0BxTWrNTLSBF1zkbTIqCerGTgwCYZxQXuvA=",
+			"size": 5091
+		},
+		{
+			"name": "/src/factories/WithGender.ts",
+			"hash": "TTWDTVgiqIwyt00C9bynjtbYSw566QyFCrf9c0O/HfQ=",
+			"size": 618
+		},
+		{
+			"name": "/src/globalApi/allFaces.ts",
+			"hash": "H5zUd8vZWznAhZwwGTU/A1hBQktWHRXcOCjqcsC+N+0=",
+			"size": 991
+		},
+		{
+			"name": "/src/globalApi/ComposableTask.ts",
+			"hash": "Ky7aBom/KB9oKYUDqnnbS7a6HwwBrhV1FG27KR0+4Yw=",
+			"size": 311
+		},
+		{
+			"name": "/src/globalApi/ComputeFaceDescriptorsTasks.ts",
+			"hash": "U+QKZhaJnWD5UlGa7Id7y4GWDSSrl/2n18YptV8EN/Q=",
+			"size": 3228
+		},
+		{
+			"name": "/src/globalApi/DetectFaceLandmarksTasks.ts",
+			"hash": "CO3h/6QvU47898v+g5s1wjuC0ACddmoAKKf6IMKOURw=",
+			"size": 4075
+		},
+		{
+			"name": "/src/globalApi/detectFaces.ts",
+			"hash": "pBeVTMhEnv0BRlgjCnfQXegKh6fjZn/shS+6i4B/kBs=",
+			"size": 624
+		},
+		{
+			"name": "/src/globalApi/DetectFacesTasks.ts",
+			"hash": "loueWsXbnOi9g8YEQiTjFENGNdnLRMRRJJE0DiKtX0w=",
+			"size": 4040
+		},
+		{
+			"name": "/src/globalApi/extractFacesAndComputeResults.ts",
+			"hash": "0eDIJOtHbcqbFabp23X2RXq1iFMYgZFEvPgi+AbBCng=",
+			"size": 2034
+		},
+		{
+			"name": "/src/globalApi/FaceMatcher.ts",
+			"hash": "X/qA7Z5Ww6htdKVhbJNAP+gmvveKkY8HtpD97Fn41II=",
+			"size": 2850
+		},
+		{
+			"name": "/src/globalApi/index.ts",
+			"hash": "gQ8KbLMyUi3iXSxBTLQMgTAth1d3lvYImiWJYm0ImrA=",
+			"size": 300
+		},
+		{
+			"name": "/src/globalApi/nets.ts",
+			"hash": "njPtLQgkVJc8xsH0+wwoIiVn8sBsxbpklN+Y8F726NA=",
+			"size": 6336
+		},
+		{
+			"name": "/src/globalApi/PredictAgeAndGenderTask.ts",
+			"hash": "vle8HVdrdH2ZcZPYamxXpqDaAh5dV/+50nbzdYNK2AU=",
+			"size": 3984
+		},
+		{
+			"name": "/src/globalApi/PredictFaceExpressionsTask.ts",
+			"hash": "uv4y7fBVYmp8lHBOBj3K7wgusjQ0jscu5EuB2e8C9Bs=",
+			"size": 3838
+		},
+		{
+			"name": "/src/globalApi/types.ts",
+			"hash": "8KTYTL9dV7ROZlnxJeBp5/YWY9Ha1zKpzihj2poZqLg=",
+			"size": 556
+		},
+		{
+			"name": "/src/index.ts",
+			"hash": "Y4U3+D10Tjg7kdDhd8KqKVEY28RJjs/kHza6pV5EckU=",
+			"size": 898
+		},
+		{
+			"name": "/src/NeuralNetwork.ts",
+			"hash": "2ko5JqbfK0Y5h3oAVkiRu2HJ3J+vATJ+HrhsWh8Cq5c=",
+			"size": 5375
+		},
+		{
+			"name": "/src/ops/index.ts",
+			"hash": "5YCGTPYD+mI8Od4d/OWkKySuE2DM4IVmTBDs/BMFd2E=",
+			"size": 331
+		},
+		{
+			"name": "/src/ops/iou.ts",
+			"hash": "cWcXIllJ5nZzAjxXUa1HLD+k7lB7aVuMTpRpDhVpBZM=",
+			"size": 464
+		},
+		{
+			"name": "/src/ops/minBbox.ts",
+			"hash": "6WySuyWOH/KPI4PRWax1Ma2B12SrqVuzmH8LJ3pdy1I=",
+			"size": 498
+		},
+		{
+			"name": "/src/ops/nonMaxSuppression.ts",
+			"hash": "s2tAoRWBOTZnWvZXyKOX51AcQ3miZyjiBIQ2BLpBOH0=",
+			"size": 915
+		},
+		{
+			"name": "/src/ops/normalize.ts",
+			"hash": "jKFz7HC2+77OaLiKDmpXMgW2sFdl/HkgQwMxijnGbSk=",
+			"size": 483
+		},
+		{
+			"name": "/src/ops/padToSquare.ts",
+			"hash": "+Gfw/YuPvS0jSOEw2XkfsCMBEfBVztgAFLA6Z5s0rYw=",
+			"size": 1554
+		},
+		{
+			"name": "/src/ops/shuffleArray.ts",
+			"hash": "LnrsfGnt2CQu1qJ+Y7yrMftdp0yPdzrYG+wGgvPl2Rc=",
+			"size": 273
+		},
+		{
+			"name": "/src/Platform.ts",
+			"hash": "ARIszeIYIU0bI5Beb9rYGHYQ4Asj3DmswhVVpBtGsbA=",
+			"size": 638
+		},
+		{
+			"name": "/src/resizeResults.ts",
+			"hash": "JF5y6U0KlrtS//YhaieHrAbS0vlv7JdIslL3BcypkJQ=",
+			"size": 1519
+		},
+		{
+			"name": "/src/ssdMobilenetv1/boxPredictionLayer.ts",
+			"hash": "qYG0ItbH4ortoXN3Idq68ojUBSPQk3MRdus5yjIAoVY=",
+			"size": 598
+		},
+		{
+			"name": "/src/ssdMobilenetv1/extractParams.ts",
+			"hash": "kdfYK/bqpXYiS2SEOliRGK3vhfnOoJSuvqD6Tz/8Wfw=",
+			"size": 8324
+		},
+		{
+			"name": "/src/ssdMobilenetv1/extractParamsFromWeightMap.ts",
+			"hash": "vSwT/JcfV2ZigM2E7Fi7J4Pw6hWBn+mPTXGlTJOTbFQ=",
+			"size": 5769
+		},
+		{
+			"name": "/src/ssdMobilenetv1/index.ts",
+			"hash": "waMwStPhp6KGHVmF5FSIhYJmyr+6E0AD+9/a6HT8zyc=",
+			"size": 471
+		},
+		{
+			"name": "/src/ssdMobilenetv1/mobileNetV1.ts",
+			"hash": "1yt5j67a/4zyt9NF9VFBktEd8YNKbrq+7mTlmwkCxa8=",
+			"size": 1784
+		},
+		{
+			"name": "/src/ssdMobilenetv1/nonMaxSuppression.ts",
+			"hash": "bjni5xSPnHmOsiJ5qIL1+3Wz6Lq8PTVxB80JpusiLWc=",
+			"size": 2141
+		},
+		{
+			"name": "/src/ssdMobilenetv1/outputLayer.ts",
+			"hash": "H3wu1u02XDaPBZ+nIEK7q9nONENE95BP8kkYuhG5Kls=",
+			"size": 2009
+		},
+		{
+			"name": "/src/ssdMobilenetv1/pointwiseConvLayer.ts",
+			"hash": "zmq2CTDhb3vgayy+LZdWv+1Au+lFJajA3tqosInlLJU=",
+			"size": 382
+		},
+		{
+			"name": "/src/ssdMobilenetv1/predictionLayer.ts",
+			"hash": "dijzxd3liejYSPp8k/hXF8T0gMlVlw5qzGT+sUmPj9A=",
+			"size": 2055
+		},
+		{
+			"name": "/src/ssdMobilenetv1/SsdMobilenetv1.ts",
+			"hash": "jqqfo/d/3TulfByx60pxmJ9aPWWivUtbybtGuyOwHTQ=",
+			"size": 3454
+		},
+		{
+			"name": "/src/ssdMobilenetv1/SsdMobilenetv1Options.ts",
+			"hash": "93KkiJpavP8JO5V/pHoftGmC9DXfxifseolDWgX/xXc=",
+			"size": 876
+		},
+		{
+			"name": "/src/ssdMobilenetv1/types.ts",
+			"hash": "8Mr5R0wwgSIOg7A58gqS0ZfSTC4tz9LuSw4Vw0qqKAQ=",
+			"size": 1846
+		},
+		{
+			"name": "/src/tfjs/tf-browser.ts",
+			"hash": "ng1N/7tlA/MTDqoZ+hqop8/zlsd0pv1/jALki0ekG40=",
+			"size": 510
+		},
+		{
+			"name": "/src/tfjs/tf-node.ts",
+			"hash": "orEIkEuYsayUOmBKf1nOwsnepb92TTN2VN83zjMwn1g=",
+			"size": 93
+		},
+		{
+			"name": "/src/tfjs/tf-node-gpu.ts",
+			"hash": "iVGwv1RcfbTMBwjPiwYGdrOzgnB8rNeCC+2uKvlDDg0=",
+			"size": 97
+		},
+		{
+			"name": "/src/tfjs/tf-node-wasm.ts",
+			"hash": "yRj0vapW6u3PK3qKEIc/cvVAZsCC56qXXfBX/VRjNbs=",
+			"size": 135
+		},
+		{
+			"name": "/src/tfjs/tf-version.ts",
+			"hash": "+id6GHgZoJKUSyMDjPjuuRMrKRR9Dgo09z0IEZRh4V4=",
+			"size": 1106
+		},
+		{
+			"name": "/src/tinyFaceDetector/const.ts",
+			"hash": "aaRbhV274uvkUZoPxpT12ATkQM1o6hazqntNkwMZ/A4=",
+			"size": 354
+		},
+		{
+			"name": "/src/tinyFaceDetector/index.ts",
+			"hash": "h3nvOiV1bHh/AUEqm0n9azvaqsbPMag7ZnZKZI2A1cU=",
+			"size": 285
+		},
+		{
+			"name": "/src/tinyFaceDetector/TinyFaceDetector.ts",
+			"hash": "g2TdtubixqevHSjBAuq+3BV1umaNyX0ezlW7QwHD3UM=",
+			"size": 1488
+		},
+		{
+			"name": "/src/tinyFaceDetector/TinyFaceDetectorOptions.ts",
+			"hash": "4N9wWJHHKjzdmpqeTgkgPN4yLWx54S0IyVyksUSPves=",
+			"size": 260
+		},
+		{
+			"name": "/src/tinyYolov2/config.ts",
+			"hash": "8nRdqyfNHPqpvmbSdcb2ZFPiKORS9zt0nO+qXZYaeHA=",
+			"size": 1701
+		},
+		{
+			"name": "/src/tinyYolov2/const.ts",
+			"hash": "KHzN7XB4Ga9LOlGzdwDu6xMuBd0eNGVUYNxTrPdUWf4=",
+			"size": 704
+		},
+		{
+			"name": "/src/tinyYolov2/convWithBatchNorm.ts",
+			"hash": "Yn5ZVgfmYzwI7G3UK0n6l63X++uFv6zY5OWI01M6Bmw=",
+			"size": 530
+		},
+		{
+			"name": "/src/tinyYolov2/depthwiseSeparableConv.ts",
+			"hash": "6P8cMec95gJkuac+mgvTrG/4Hq07Y8CjckKiC/c7CFs=",
+			"size": 500
+		},
+		{
+			"name": "/src/tinyYolov2/extractParams.ts",
+			"hash": "m76IdHeNW28n2NkIOgSZtxQ/tlf4gTaxZ+XG4woZ03o=",
+			"size": 3911
+		},
+		{
+			"name": "/src/tinyYolov2/extractParamsFromWeightMap.ts",
+			"hash": "XpF0gLlkjwF35JLydG0HYLwYIzJbpQn252zNkfC1rs0=",
+			"size": 3282
+		},
+		{
+			"name": "/src/tinyYolov2/index.ts",
+			"hash": "FVJYTTANb1EDg281X779ZJeNcYlHcdkQMiGsew/CauI=",
+			"size": 338
+		},
+		{
+			"name": "/src/tinyYolov2/leaky.ts",
+			"hash": "95VujIzk1oAIRNGC5M7PIQBXLJ0UxzH6Fvodsa5RfsI=",
+			"size": 238
+		},
+		{
+			"name": "/src/tinyYolov2/TinyYolov2.ts",
+			"hash": "3ISea36kSDotVo/MTPGPuZT0aU1QNHnkZgK1P54gyMM=",
+			"size": 1810
+		},
+		{
+			"name": "/src/tinyYolov2/TinyYolov2Base.ts",
+			"hash": "IvTTzEuHhhDkK5iLKtnaMw7SywYcgwootOhXbEE1dIk=",
+			"size": 9687
+		},
+		{
+			"name": "/src/tinyYolov2/TinyYolov2Options.ts",
+			"hash": "cNVa1XBcCIXSLiBEGR403asI7VevrPmCFJMjkQNlpQY=",
+			"size": 908
+		},
+		{
+			"name": "/src/tinyYolov2/types.ts",
+			"hash": "FzE6OHOWMrrBwOePl1xhFokYETvst+d7+D315GTKEsQ=",
+			"size": 1166
+		},
+		{
+			"name": "/src/types/eslint.json",
+			"hash": "zLcmCvVhGo2iYeL6nfrGmwuqYTLiRbsanWwinjBMSQ8=",
+			"size": 1436
+		},
+		{
+			"name": "/src/types/long.d.ts",
+			"hash": "4aLukupChiXl5r+68+8CVGGPIpnxpXg87OLoCG3mOa8=",
+			"size": 9313
+		},
+		{
+			"name": "/src/types/offscreencanvas.d.ts",
+			"hash": "/5jmhTre2a4tQAcEdKC6BB49eXgih7XHETVCJlBr2vk=",
+			"size": 3962
+		},
+		{
+			"name": "/src/types/tfjs.esm.d.ts",
+			"hash": "ZKfRaNsVymPoGdurs9GjzpJAhnSvn0w87sAMOqn8vTg=",
+			"size": 779
+		},
+		{
+			"name": "/src/types/tsconfig.json",
+			"hash": "3/jjKzF7moHl4ycp/YAHwFkAjWbJ6bgwqm7Qn7i73yY=",
+			"size": 1468
+		},
+		{
+			"name": "/src/types/webgpu.d.ts",
+			"hash": "Qa7pkZQxxADfvMorfffXfqvtYrEIyYlNaNz7eepdxU8=",
+			"size": 95445
+		},
+		{
+			"name": "/src/utils/index.ts",
+			"hash": "KwEJCnES4YBXMNPwxOcOM3YdQQKW2v576O6Kt/L4aWs=",
+			"size": 1785
+		},
+		{
+			"name": "/src/xception/extractParams.ts",
+			"hash": "ebvucel8DAlNGS2LN0WFikewo8JA+E4SqDk+p7Lcrbg=",
+			"size": 3489
+		},
+		{
+			"name": "/src/xception/extractParamsFromWeightMap.ts",
+			"hash": "nomdfFAB1NBn8JvH3cqMMbBADjd8qNlcy0JbYBp+6Yw=",
+			"size": 3170
+		},
+		{
+			"name": "/src/xception/TinyXception.ts",
+			"hash": "2VkdAyz0vTB6Bt8kXgCDPc2QHUklJfwSkNF5kKgsvZo=",
+			"size": 3124
+		},
+		{
+			"name": "/src/xception/types.ts",
+			"hash": "azajWKvxZulF+rAT/N4Z1spwU9oEDnGO20CEWSGwKF4=",
+			"size": 701
+		},
+		{
+			"name": "/TODO.md",
+			"hash": "HNz8j7o9jBGL6qXOnCMuO3vGlUGwXS82H3nxMDfSAjs=",
+			"size": 30
+		},
+		{
+			"name": "/tsconfig.json",
+			"hash": "8J5QLvm+dd0ZAVy3E7Lj61MgVEPE2BuTPyzCN0nE2/g=",
+			"size": 1500
+		},
+		{
+			"name": "/TUTORIAL.md",
+			"hash": "nCWa/e8qdmCFPkpQVnySDaCKuULeS7N25oMlskFc3R4=",
+			"size": 26393
+		},
+		{
+			"name": "/types/face-api.d.ts",
+			"hash": "+LmRgsU23oI8dTI0O20yuE0helA0pNHxXa/T/TPdH/o=",
+			"size": 167246
+		}
+	],
+	"links": {
+		"stats": "https://data.jsdelivr.com/v1/stats/packages/npm/@vladmandic/face-api@1.7.15",
+		"entrypoints": "https://data.jsdelivr.com/v1/packages/npm/@vladmandic/face-api@1.7.15/entrypoints"
+	}
+}
