@@ -1,0 +1,32 @@
+# Pobiera schematy XML DAC7 (DPI-IS, DPI-FR, UPO, InitUpload) z gov.pl wraz z importowanymi schematami — do budowy raportu DPI w aplikacji Zetka Taxi
+name: Schematy DPI (DAC7)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p tests/dpi; cd tests/dpi; : > STATUS
+          get() { code=$(curl -sSL -A "Mozilla/5.0" -w '%{http_code}' -o "$2" "$1"); echo "$code $2 $1" >> STATUS; }
+          get https://www.gov.pl/attachment/b93d56fe-99c6-48f5-bfec-cdd71990c56b DPI-IS.xsd
+          get https://www.gov.pl/attachment/3b8a2f0c-b6a3-4a15-ac65-a2e1d3317d02 DPI-FR.xsd
+          get https://www.gov.pl/attachment/24fbf979-062b-4437-8170-7b4648ab425f UPO-DPI.xsd
+          get https://www.gov.pl/attachment/338627d4-24c7-4da9-a77e-b00cfd8d1e20 InitUpload.xsd
+          get https://www.gov.pl/web/kas/struktury-dpi-dla-operatorow-platform strona.html
+          # importy (schemaLocation) — do 3 poziomów
+          for lvl in 1 2 3; do
+            for f in *.xsd; do
+              grep -o 'schemaLocation="[^"]*"' "$f" | cut -d'"' -f2 | while read -r u; do
+                case "$u" in http*) n=imp_$(echo "$u" | sed 's#^https\?://##; s#[/:]#_#g'); [ -f "$n" ] || get "$u" "$n";; esac
+              done
+            done
+          done
+          grep -o 'href="[^"]*attachment[^"]*"[^<]*<[^>]*>[^<]*' strona.html | head -40 > LINKI.txt || true
+          cat STATUS; ls -la
+      - run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tests/dpi && git commit -m "Schematy DPI (DAC7)" && git push || true
