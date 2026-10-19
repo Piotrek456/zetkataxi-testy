@@ -17,7 +17,8 @@ jobs:
           for f in tiny_face_detector_model face_landmark_68_model face_recognition_model; do get model/$f.bin $f.bin; get model/$f-weights_manifest.json $f-weights_manifest.json; get model/$f.json $f.json; done
           curl -sSL "https://data.jsdelivr.com/v1/packages/npm/@vladmandic/face-api@$V?structure=flat" -o vendor/face/FILES.json || true
           get LICENSE LICENSE
+          mkdir -p tests/faces; for i in 1 2 3 4 5 6; do curl -sSL -o tests/faces/sample$i.jpg $B/demo/sample$i.jpg; done
           cat vendor/face/STATUS; ls -la vendor/face
       - run: |
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add vendor/face && git commit -m "Biblioteka twarzy face-api" && git push || true
+          git add vendor/face tests/faces && git commit -m "Biblioteka twarzy face-api" && git push || true
