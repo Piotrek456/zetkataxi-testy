@@ -1,0 +1,53 @@
+# Zewnętrzny strażnik Zetka Taxi (niezależny od Supabase): co 5 min sprawdza stronę (Netlify), serwer OVH, Supabase
+# oraz to, czy wewnętrzne sprawdzanie (funkcja monitor w Supabase) działa. Przy awarii zakłada zgłoszenie (issue) „Awaria” —
+# GitHub wysyła wtedy e-mail i powiadomienie w aplikacji GitHub; po powrocie zgłoszenie zamyka się samo.
+name: Strażnik (stan systemu)
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+permissions:
+  issues: write
+  contents: read
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Sprawdzenie
+        id: chk
+        run: |
+          SITE=https://zielona-taxi.netlify.app; OVH=https://57-131-166-229.sslip.io; SB=https://bmulsxfdpkaqogyfgygo.supabase.co
+          ANON=$(curl -fsS --max-time 15 "$SITE/shared/config.js" | grep -o "eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*" | head -1 || true)
+          bad=""
+          try() { for i in 1 2; do eval "$2" && return 0; sleep 20; done; bad="$bad\n- $1"; }
+          try "Netlify — aplikacja klienta" "curl -fsS --max-time 15 $SITE/klient/ | grep -q app.js"
+          try "Netlify — aplikacja kierowcy" "curl -fsS --max-time 15 $SITE/kierowca/ | grep -q app.js"
+          try "Serwer OVH — trasy" "curl -fsS --max-time 15 '$OVH/route/v1/driving/15.5062,51.9356;15.52,51.94?overview=false' | grep -q '\"Ok\"'"
+          try "Serwer OVH — adresy" "curl -fsS --max-time 15 '$OVH/api?q=Zielona&limit=1' | grep -q features"
+          try "Supabase — baza i API" "curl -fsS --max-time 15 -X POST -H 'apikey: $ANON' -H 'Authorization: Bearer $ANON' -H 'Content-Type: application/json' -d '{}' $SB/rest/v1/rpc/monitor_ping > /tmp/ping.json"
+          if [ -s /tmp/ping.json ]; then
+            last=$(jq -r '.last_run // empty' /tmp/ping.json); down=$(jq -r '.down // 0' /tmp/ping.json)
+            if [ -n "$last" ]; then age=$(( $(date +%s) - $(date -d "$last" +%s) )); [ "$age" -gt 1200 ] && bad="$bad\n- Supabase — automatyczne sprawdzanie nie działa od $((age/60)) min"; fi
+            [ "$down" != "0" ] && echo "Wewnętrzne sprawdzanie zgłasza awarię $down usług (powiadomienie wysłane z Supabase)."
+          fi
+          printf "%b\n" "$bad"
+          { echo "bad<<EOF"; printf "%b\n" "$bad"; echo "EOF"; } >> "$GITHUB_OUTPUT"
+      - name: Zgłoszenie awarii / zamknięcie po powrocie
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BAD: ${{ steps.chk.outputs.bad }}
+        run: |
+          open=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --search "Awaria Zetka Taxi in:title" --json number -q '.[0].number' || true)
+          now=$(TZ=Europe/Warsaw date '+%d.%m.%Y %H:%M')
+          if [ -n "$(echo "$BAD" | tr -d '[:space:]')" ]; then
+            if [ -z "$open" ]; then
+              gh issue create -R "$GITHUB_REPOSITORY" --title "Awaria Zetka Taxi ($now)" --body "$(printf 'Strażnik wykrył awarię (%s):\n%s\n\nSprawdzanie co 5 minut. Zgłoszenie zamknie się samo, gdy wszystko zacznie działać.' "$now" "$BAD")"
+            fi
+            exit 1
+          elif [ -n "$open" ]; then
+            gh issue close "$open" -R "$GITHUB_REPOSITORY" --comment "Działa ponownie ($now)."
+          fi
